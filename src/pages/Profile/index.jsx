@@ -14,8 +14,7 @@ const Profile = () => {
 
 	return(
 		<>
-			<p>Mon Profil</p>
-			{ user }
+			<p>Mon Profile</p>
 		</>
 	)
 }

@@ -1,5 +1,8 @@
-@import './config/glassmorphism.scss';
 @import './config/config';
-@import './components/layout/nav/index.scss';
-@import './components/layout/footer/index.scss';
-@import './pages/homepage/index.scss';
+
+@import './config/glassmorphism.scss';
+@import './pages/Home';
+@import './components/Layout/NavBar/MenuHome/';
+@import './components/Layout/NavBar/MenuProfile/';
+@import './components/Layout/Footer';
+
