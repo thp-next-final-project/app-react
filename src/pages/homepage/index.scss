@@ -1,0 +1,9 @@
+
+.jumbotron{
+    position: relative;
+    display: block;
+    height: 42vh;
+    background-color: $secondary-color;
+
+    @include glass(0.2);
+}
