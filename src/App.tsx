@@ -14,8 +14,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import Navbar from './components/Layout/NavBar';
-import { Footer } from './components/Layout/Footer';
+import Navbar from './components/layout/NavBar';
+import { Footer } from './components/layout/footer';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
