@@ -3,7 +3,24 @@
     position: relative;
     display: block;
     height: 42vh;
-    background-color: $secondary-color;
-
-    @include glass(0.2);
+    .img{
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(https://www.wellandgood.com/wp-content/uploads/2019/03/Getty_images-Battle-Ropes-Alvarez.jpg);
+        background-size: cover;
+        background-position: 0 20%;
+    }
+    .text{
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        @include glass(0.3);
+        &:hover{
+        }
+    }
 }

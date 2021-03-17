@@ -5,8 +5,10 @@ export function Homepage () {
     return (
         <div>
             <div className="jumbotron">
-                <div className="header">
-                    coucou
+                <div className="img">
+                </div>
+                <div className="text">
+                    
                 </div>
             </div>
             <div className="main">
