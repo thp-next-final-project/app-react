@@ -20,7 +20,7 @@ export function Homepage () {
         <div className="card-homepage">             
             <Presentation/>
         </div>
-        <div className="workout-section card-section" id="workout">
+        <div className="workout-section card-section"id="workout">
             <Workout/>        
         </div>
         <div className="food-section card-section" id="menu">
