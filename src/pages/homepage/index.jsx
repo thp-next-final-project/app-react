@@ -1,4 +1,3 @@
-import mockupHomepage from "../../assets/mockup-hp.png";
 
 
 
