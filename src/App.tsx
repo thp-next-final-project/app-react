@@ -11,10 +11,10 @@ import { useEffect } from 'react';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import Home from './pages/Home';
 import { GET_USER } from './stores/actions';
-
-
+import { Navbar } from './components/layout/nav';
+import { Footer } from './components/layout/footer';
+import Home from './pages/Home';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
@@ -36,6 +36,10 @@ const App = (): JSX.Element => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, data])
   return (
+    <>
+      { !user.isLogged &&
+        <Navbar/>
+      }
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -52,6 +56,9 @@ const App = (): JSX.Element => {
           </Route>
         </Switch>
       </Router>
+      <Footer/>
+    </>
+
   );
 };
 

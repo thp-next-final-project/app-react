@@ -1,3 +1,8 @@
 @import './config/config';
+
+@import './config/glassmorphism.scss';
+@import './pages/Home';
 @import './components/MenuHamburger/';
 
+@import './components/layout/nav/index.scss';
+@import './components/layout/footer/index.scss';
