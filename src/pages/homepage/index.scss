@@ -24,3 +24,107 @@
         }
     }
 }
+// @import backgroundHp from "../../assets/background-hp.png";
+
+
+body {
+    // background-color: $primary-color;
+    // background-image: url("../../assets/background-hp.png");
+    background-image: linear-gradient(to right top, #3d4152, #484f6a, #545d83, #5f6c9d, #6b7bb7, #688cc6, #669cd3, #65addf, #73bed8, #93ccd1, #b7d8d1, #d8e2dc);
+    background-attachment: fixed;
+    transition-duration: 0;
+
+    height: 100vh;
+}
+.homepage-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.card-homepage {
+    // glass morphism displaying
+    // background: rgba( 255, 255, 255, 0.25 );
+    // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    // backdrop-filter: blur( 5.0px );
+    // -webkit-backdrop-filter: blur( 5.0px );
+    // border-radius: 10px;
+    // border: 1px solid rgba( 255, 255, 255, 0.18 );
+    // height: 70vh;
+    // margin-right: 5vw;
+    //--------------------------
+    display: flex;
+    justify-content: center;
+
+}
+
+.text-part {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+        // glass morphism displaying
+        background: rgba( 255, 255, 255, 0.25 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 5.0px );
+        -webkit-backdrop-filter: blur( 5.0px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        box-sizing: border-box;
+        max-width: 50%;
+        margin: 10px 10px 10px 10px;
+        padding: 0px 10px 0px 10px;
+        //-------------------------
+        width: 40%;
+        height: 50%;
+        text-align: center;
+    }
+
+    .card:hover{
+        background-color: $secondary-background;
+        color: $primary-background;
+        width: 45%;
+    }
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 90px;
+
+    .header-cta{
+        background-color: $tercary-color;
+        color: $secondary-background;
+        border-radius: 20px;
+        border: none;
+        height: 30px;
+        width: 20vw;
+    }
+
+    .header-cta:hover{
+        background-color: $secondary-background;
+        color: $tercary-color;
+    }
+}
+
+.work-section{
+    margin-top: 100px;
+    display: flex;
+    justify-items: center;
+}
+
+.food-section{
+    margin-top: 50px;
+}
+

@@ -11,6 +11,14 @@ $white: #EEEBD3;
 $title-font: 'Montserrat', sans-serif;
 $content-font: 'Lato', sans-serif;
 
+p, div {
+    font-family: 'Lato', sans-serif;
+    color: $primary-color;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+}
 
 html, body{
     background-color: $primary-background;

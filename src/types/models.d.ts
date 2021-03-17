@@ -1,14 +1,10 @@
-export type UserRole = "user" | "professor" | "admin"
-
-export type User = {
-  email: string,
-  password?: string,
-  role: UserRole?
-}
+export type UserRole = "user" | "admin" | "coach" | "chef"
 
 export type CurrentUser = {
   id: number?,
   email: string?,
+  firstname: string?,
+  lastname: string?,
   role: UserRole?,
   isLogged: boolean
 }
@@ -32,3 +28,5 @@ export type Params = {
   headers: Headers,
   body: string
 }
+
+export type Error = string?
