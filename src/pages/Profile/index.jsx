@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import MenuHamburger from '../../components/MenuHamburger';
 
 const Profile = () => {
 	const user = useSelector((state) => state);
@@ -15,9 +14,7 @@ const Profile = () => {
 
 	return(
 		<>
-			<MenuHamburger/>
 			<p>Mon Profile</p>
-			
 		</>
 	)
 }

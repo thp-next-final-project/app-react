@@ -1,46 +1,46 @@
+import { useEffect } from 'react';
 import { 
   BrowserRouter as Router,
   Switch,
   Route } from "react-router-dom";
-import Cookies from 'js-cookie';
-import { COOKIE_ID } from './config/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFetch } from './hooks/useFetch';
-import { useEffect } from 'react';
+import Cookies from 'js-cookie';
 
+import { COOKIE_ID } from './config/config';
+import { GET_USER } from './stores/actions';
+
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import { GET_USER } from './stores/actions';
-import { Navbar } from './components/layout/nav';
-import { Footer } from './components/layout/footer';
-import Home from './pages/Home';
+import Navbar from './components/Layout/NavBar';
+import { Footer } from './components/Layout/Footer';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
   const { data, get } = useFetch(true);
 	const dispatch = useDispatch();
-
-  const autoLogin = () => {
-    const id = Cookies.get(COOKIE_ID);
+	
+  const autoLogin = (id?:string) => {
     get(`api/users/${id}`);
   }
+
   useEffect(() => {
-		if (!user.isLogged) {
-			autoLogin();
+    const id = Cookies.get(COOKIE_ID);
+		if (!user.isLogged && id) {
+			autoLogin(id);
       console.log(data);
 		}
-    if (!user.isLogged && data) {
+    if (!user.isLogged && id && data) {
       dispatch({ type: GET_USER, data });
     }
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, data])
+
   return (
-    <>
-      { !user.isLogged &&
-        <Navbar/>
-      }
       <Router>
+        <Navbar/>
         <Switch>
           <Route path="/" exact>
             <Home/>
@@ -55,9 +55,8 @@ const App = (): JSX.Element => {
             <Profile/>
           </Route>
         </Switch>
+        <Footer/>
       </Router>
-      <Footer/>
-    </>
 
   );
 };

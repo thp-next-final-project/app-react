@@ -17,7 +17,7 @@
     top: 0.5rem;
     width: 28px;
     height: 3px;
-    background: $primary-color;
+    background: $secondary-color;
     @include transition-ease;
 
     &::before {
@@ -26,7 +26,7 @@
       top: -8px;
       width: 28px;
       height: 3px;
-      background: $primary-color;
+      background: $secondary-color;
       @include transition-ease;
     }
     &::after {
@@ -35,7 +35,7 @@
       top: 8px;
       width: 28px;
       height: 3px;
-      background: $primary-color;
+      background: $secondary-color;
       @include transition-ease;
     }
     &.open {
@@ -55,7 +55,7 @@
   }
 }
 
-nav.nav-burger {
+.nav-burger {
   position: fixed;
   top: 0;
   left: 0;
@@ -72,7 +72,7 @@ nav.nav-burger {
     justify-content: center;
     height: 100vh;
     overflow: hidden;
-    background: $primary-color;
+    background: $secondary-color;
     list-style-type: none;
     padding-right: 1rem;
     transform: translateY(-100%);
