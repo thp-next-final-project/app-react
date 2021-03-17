@@ -1,18 +1,41 @@
-import { Provider } from 'react-redux';
 import { 
   BrowserRouter as Router,
   Switch,
   Route } from "react-router-dom";
-import Reducer from './stores';
+import Cookies from 'js-cookie';
+import { COOKIE_ID } from './config/config';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFetch } from './hooks/useFetch';
+import { useEffect } from 'react';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Profil from './pages/Profil';
-import PrivateRoute from './components/PrivateRoute';
+import Profile from './pages/Profile';
 import Home from './pages/Home';
+import { GET_USER } from './stores/actions';
+
+
 
 const App = (): JSX.Element => {
+  const user:any = useSelector((state) => state);
+  const { data, get } = useFetch(true);
+	const dispatch = useDispatch();
+
+  const autoLogin = () => {
+    const id = Cookies.get(COOKIE_ID);
+    get(`api/users/${id}`);
+  }
+  useEffect(() => {
+		if (!user.isLogged) {
+			autoLogin();
+      console.log(data);
+		}
+    if (!user.isLogged && data) {
+      dispatch({ type: GET_USER, data });
+    }
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user, data])
   return (
-    <Provider store={Reducer}>
       <Router>
         <Switch>
           <Route path="/" exact>
@@ -24,10 +47,11 @@ const App = (): JSX.Element => {
           <Route path="/signup" exact>
             <Register/>
           </Route>
-          <PrivateRoute path="/profil" component={Profil} />
+          <Route path="/profile" exact>
+            <Profile/>
+          </Route>
         </Switch>
       </Router>
-    </Provider> 
   );
 };
 
