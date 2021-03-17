@@ -1,7 +1,10 @@
+
+
 export const Footer = () => {
     return (
         <footer>
-            <div>mon joli footer hihi</div>
+            {/* <div>Nous contacter</div> */}
+            <div>© 2021 - Sporteat</div>
         </footer>
     )
 }
