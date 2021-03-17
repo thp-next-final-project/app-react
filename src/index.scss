@@ -2,7 +2,7 @@
 
 @import './config/glassmorphism.scss';
 @import './pages/Home';
-@import './components/MenuHamburger/';
+@import './components/Layout/NavBar/MenuHome/';
+@import './components/Layout/NavBar/MenuProfile/';
+@import './components/Layout/Footer';
 
-@import './components/layout/nav/index.scss';
-@import './components/layout/footer/index.scss';

@@ -43,13 +43,13 @@
       background: transparent;
       &::before {
         transform: rotate(45deg) translate(5px, 8px);
-        background-color: $secondary-color;
-        background-color: $secondary-color;
+        background-color: red;
+        background-color: red;
       }
       &::after {
         width: 28px;
         transform: rotate(-45deg) translate(3px, -7px);
-        background-color: $secondary-color;
+        background-color: red;
       }
     }
   }
