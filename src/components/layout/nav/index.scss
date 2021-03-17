@@ -22,6 +22,7 @@ nav {
         width: 30%;
         display: inline-flex;
         align-items: center;
+        text-decoration: none;
     }
 
     .text-logo{
@@ -31,7 +32,6 @@ nav {
     
       .sport{
         color: $primary-background;
-
       }
       .eat{
         color: $primary-color;
@@ -42,7 +42,7 @@ nav {
       color: $primary-background;
       margin-left: 25px;
       text-decoration: none;
-      line-height: 100px;
+      line-height: 40px;
     }
 
     .navItems:hover{

@@ -15,9 +15,9 @@ import { Homepage } from './pages/homepage/index';
 
 const App = (): JSX.Element => {
   return (
-    <Provider store={Reducer}>
-     <Navbar/>
+    <Provider store={Reducer}>     
       <Router>
+       <Navbar/>
         <Switch>
           <Route path="/" exact>
             <Homepage/>
@@ -30,8 +30,8 @@ const App = (): JSX.Element => {
           </Route>
           <PrivateRoute path="/profil" component={Profil} />
         </Switch>
-      </Router>
-      <Footer/>
+        <Footer/>
+      </Router>      
     </Provider> 
 
   );
