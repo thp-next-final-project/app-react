@@ -1,50 +1,39 @@
+import { Link } from "react-router-dom";
+import { Presentation } from './presentation/index';
+import { Workout } from './workout/index';
+import { Menu } from './menu/index';
+import { Followup } from './followup/index';
+
 const Home = () => {
     return (
-     <div className="homepage-container">
-         <div className="header">
-             <h1>Le sport sur mesure, jusque dans l'assiette !</h1>
-             <button className="header-cta">Commencer dès maintenant</button>
-         </div>
-       
-        <div className="card-homepage"> 
-            
-            <div className="text-part">
-                <h2><strong>Sporteat</strong>, c'est quoi ?</h2>
-                <div className="cards">
-                    <div className="card">
-                        <div className="card_face card_face-title">
-                            <h3>Un programme de sport personnalisé</h3>
-                        </div>
-                        <div className="card_face card_face-content">
-                            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-                        </div>
-                    </div>
-                    <div className="card card2">
-                        <h3>Des menus sur mesure</h3>
-                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-
-                    </div>
-                    <div className="card card3">
-                        <h3>Un niveau adapté</h3>
-                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-                    </div>
-                    <div className="card card4">
-                        <h3>Un programme complet</h3>
-                        {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> */}
-                    </div>
-                </div>
-
+        <div className="homepage-container">
+            <div className="header">
+                <h1>Le sport sur mesure, jusque dans l'assiette !</h1>
+                <p>Sporteat vous propose un <strong>programme sportif</strong> et <strong>nutrionnel</strong>,</p>
+                <p>afin que vous atteignez rapidement les <strong>objectifs</strong> que vous avez défini.</p>
+                <Link to="/signup">
+                <button className="hp-cta">Commencer dès maintenant</button>
+            </Link> 
             </div>
+        
+        <div className="card-homepage">             
+            <Presentation/>
+        </div>
+        <div className="workout-section card-section"id="workout">
+            <Workout/>        
+        </div>
+        <div className="food-section card-section" id="menu">
+            <Menu/>
+        </div>
+        <div className="followup-section card-section" id="followup">
+            <Followup/>
+        </div>
+        <Link to="/signup">
+            <button className="hp-cta">Commencer dès maintenant</button>
+        </Link> 
 
-        </div>
-        <div className="work-section">
-            <h1>Un programme sportif adapté à vos envies</h1>
-        </div>
-        <div className="food-section">
-            <h1>Une programme alimentaire sur mesure</h1>
-        </div>
     </div>
-       
+        
     )
 
 };

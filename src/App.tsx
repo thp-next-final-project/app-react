@@ -39,8 +39,9 @@ const App = (): JSX.Element => {
 	}, [user, data])
 
   return (
+      
       <Router>
-        <Navbar/>
+       <Navbar/>
         <Switch>
           <Route path="/" exact>
             <Home/>
@@ -56,7 +57,8 @@ const App = (): JSX.Element => {
           </Route>
         </Switch>
         <Footer/>
-      </Router>
+      </Router>      
+   
 
   );
 };
