@@ -1,12 +1,10 @@
 import { createStore } from 'redux';
 import Cookies from 'js-cookie';
-import { COOKIE_NAME } from '../config/config';
+import { COOKIE_TOKEN, COOKIE_ID } from '../config/config';
 import { LOGIN, LOGOUT, GET_USER } from './actions'
-import { CurrentUser, Payload } from '../types/models';
 
 
-
-const initialUserData:CurrentUser = {
+const initialUserData = {
   id: null,
   email: null,
   firstname: null,
@@ -15,20 +13,20 @@ const initialUserData:CurrentUser = {
   isLogged: false
 }
 
-const userReducer = (state = initialUserData, payload:Payload):CurrentUser => {
+const userReducer = (state = initialUserData, payload) => {
   const { type, data, token } = payload;
 
   switch (type) {
     case GET_USER:
-      if (!data || !data.id) {
+      if (!data.data || !data.data.id) {
         throw new Error('Data for login must not be empty.');
       }
       return {
-        id: parseInt(data.id),
-        role: data.attributes.role,
-        firstname: data.attributes.firstname,
-        lastname: data.attributes.lastname,
-        email: data.attributes.email,
+        id: parseInt(data.data.id),
+        role: data.data.attributes.role,
+        firstname: data.data.attributes.firstname,
+        lastname: data.data.attributes.lastname,
+        email: data.data.attributes.email,
         isLogged: true
       }
     case LOGIN:
@@ -38,7 +36,8 @@ const userReducer = (state = initialUserData, payload:Payload):CurrentUser => {
       if (!token) {
         throw new Error('Missing token.');
       }
-      Cookies.set(COOKIE_NAME, token);
+      Cookies.set(COOKIE_TOKEN, token);
+      Cookies.set(COOKIE_ID, data.id);
       return {
         id: parseInt(data.id),
         role: data.attributes.role,
@@ -48,7 +47,8 @@ const userReducer = (state = initialUserData, payload:Payload):CurrentUser => {
         isLogged: true
       };
     case LOGOUT:
-      Cookies.remove(COOKIE_NAME);
+      Cookies.remove(COOKIE_TOKEN);
+      Cookies.remove(COOKIE_ID);
       return {
         id: null,
         role: null,

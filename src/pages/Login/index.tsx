@@ -12,8 +12,8 @@ const Login = () => {
 	const dispatch = useDispatch();
 	
 	useEffect(() => {
-		if (user.isLogged ) {
-			history.push(`/`);
+		if (user.isLogged) {
+			history.push(`/profile`);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])

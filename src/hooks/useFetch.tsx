@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Cookies from 'js-cookie';
-import { API_URL, COOKIE_NAME } from '../config/config';
+import { API_URL, COOKIE_TOKEN } from '../config/config';
 
 export const useFetch = ( withAuth = false ) => {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ data, setData ] = useState(null);
-  const [ token, setToken ] = useState(Cookies.get(COOKIE_NAME));
+  const [ token, setToken ] = useState(Cookies.get(COOKIE_TOKEN));
   const [ errors, setErrors] = useState(null);
 
   const headers:Record<string, string> = { 
@@ -24,7 +24,6 @@ export const useFetch = ( withAuth = false ) => {
       })
 				.then((response) => response.json())
 				.then ((response) => {
-					console.log(response)
 					setData(response)
 				})
         .catch(error => setErrors(error))
@@ -41,14 +40,12 @@ export const useFetch = ( withAuth = false ) => {
         body: JSON.stringify(postData)
       })
 				.then((response) => {
-          console.log(response.headers.get('Authorization'));
           if ((path === '/api/login' || path === '/api/signup')  && response.status === 200) {
             setToken(response.headers.get('Authorization') || "");
           } 
           return response.json()
         })
 				.then((response) => {          
-					console.log(response.data)         
 					setData(response.data)
 				})
         .catch(error => setErrors(error))
