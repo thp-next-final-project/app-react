@@ -5,7 +5,7 @@ import logo from "../../../../assets/logo.png";
 
 const MenuHome = () => {
 
-    const navHeight = window.innerHeight/15;
+    const navHeight = window.innerHeight/10;
     const [navToggle, setNavToggle] = useState(false);
 
    const handleScroll =() => {    
