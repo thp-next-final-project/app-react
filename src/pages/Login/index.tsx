@@ -65,7 +65,17 @@ const Login = () => {
 					</div>
 
 				</div>
+				<div className="btn-container">
+						<button type="submit" className={`btn ${
+							emailError
+							?
+							"btn-error"
+							:
+							""
+						}`}>Se connecter</button>
+				</div>
 			</form>
+
 			{errors && <MessageError message={errors}/>}
 		</section>
 	)

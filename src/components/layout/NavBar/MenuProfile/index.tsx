@@ -34,13 +34,17 @@ const MenuProfile = () => {
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
               <Link className="navItems" to="/login">
-                test
+                Mes informations
               </Link>
           </li>
+
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-            <a href="test" >Test</a>
+              <Link className="navItems" to="/login">
+                Paramètres de connexion
+              </Link>         
           </li>
-          <button onClick={handleLogout}>Log Out</button>
+       
+          <div onClick={handleLogout}>Se déconnecter</div>
         </ul>
       </nav>
     </>

@@ -66,16 +66,21 @@
     visibility: visible;
   }
   .menu-nav {
+    @include glass(0.2);
+    margin-top: 0;
+    text-decoration: none;
+    color: inherit;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 40vh;
+    width: 40vw;
     overflow: hidden;
-    background: $secondary-color;
+    // background: $secondary-color;
     list-style-type: none;
     padding-right: 1rem;
-    transform: translateY(-100%);
+    transform: translateY(-100vh);
     @include transition-ease;
 
     &.open {
@@ -87,9 +92,9 @@
       &.open {
         transform: translateX(0);
       }
-      &.active > a {
-        color: $secondary-color;
-      }
+      // &.active > a {
+      //   color: $secondary-color;
+      // }
     }
 
     &-link {
@@ -108,6 +113,7 @@
 @for $var from 1 through 2 {
   .menu-nav-item:nth-child(#{$var}) {
     transition-delay: $var * 0.1s + 0.15s;
+    
   }
 }
 
