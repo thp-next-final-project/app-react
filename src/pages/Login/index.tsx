@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
+import {Field} from '../../components/fields/index';
 import MessageError from '../../components/MessageError';
 
 
@@ -43,11 +44,17 @@ const Login = () => {
 		<section className="signup-form ">
 			<h2>Login</h2>
 			<form onSubmit={handleLogin}>
-				<label>Email</label>
-				<input type="email" name="email"/>
-				<label>Mot de passe</label>
-				<input type="password" name="password"/>
-				<button type="submit">Se connecter</button>
+				<div className="form-container">
+					<div className="half">
+						<Field label="Email" name="email"/>
+					</div>
+				</div>
+				<div className="form-container">
+					<div className="half">
+						<Field label="Password" password name="password"/>
+					</div>
+
+				</div>
 			</form>
 			{errors && <MessageError message={errors}/>}
 		</section>
