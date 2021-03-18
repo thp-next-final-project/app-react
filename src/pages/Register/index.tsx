@@ -74,7 +74,6 @@ const Register = () => {
 		} else {
 			setPasswordConfirmationError("");
 		}
-		console.log(e.target.value);
 		
 	}
 	return (
