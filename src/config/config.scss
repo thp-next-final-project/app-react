@@ -21,9 +21,13 @@ h1, h2, h3, h4 {
 }
 
 html, body{
-    background-color: $primary-background;
+    background-image: linear-gradient(to right top, #3d4152, #484f6a, #545d83, #5f6c9d, #6b7bb7, #688cc6, #669cd3, #65addf, #73bed8, #93ccd1, #b7d8d1, #d8e2dc);
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+    scroll-behavior: smooth;
 }
 
 *{

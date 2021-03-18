@@ -1,7 +1,7 @@
 .menu-home {
     display: block;
     width: 100%;
-    height: 15vh;
+    height: 10vh;
     // background-color: transparent;
     background-color: transparent;
     color: $primary-background;
@@ -10,6 +10,9 @@
     align-items: center;
     font-family: $content-font;
     margin: 0px;
+    position: fixed;
+    z-index: 5;
+    top: 0;
     
     .nav-right{
         width: 70vw;
@@ -22,6 +25,7 @@
         width: 30%;
         display: inline-flex;
         align-items: center;
+        text-decoration: none;
     }
 
     .text-logo{
@@ -31,7 +35,6 @@
     
       .sport{
         color: $primary-background;
-
       }
       .eat{
         color: $primary-color;
@@ -42,7 +45,7 @@
       color: $primary-background;
       margin-left: 25px;
       text-decoration: none;
-      line-height: 100px;
+      line-height: 40px;
     }
 
     .navItems:hover{
@@ -65,6 +68,10 @@
       width: 100%;
     }
 
+  }
+
+  .scrolledNavbar{
+    @include glass (0.1);
   }
 
 .logo {

@@ -14,8 +14,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import NavBar from './components/layout/NavBar/index';
-import { Footer } from './components/layout/footer/index';
+import Navbar from './components/Layout/NavBar';
+import { Footer } from './components/Layout/Footer';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
@@ -39,8 +39,9 @@ const App = (): JSX.Element => {
 	}, [user, data])
 
   return (
+      
       <Router>
-        <NavBar/>
+       <Navbar/>
         <Switch>
           <Route path="/" exact>
             <Home/>
@@ -56,7 +57,8 @@ const App = (): JSX.Element => {
           </Route>
         </Switch>
         <Footer/>
-      </Router>
+      </Router>      
+   
 
   );
 };

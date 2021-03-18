@@ -8,9 +8,8 @@ footer {
     justify-content: center;
     font-family: $content-font;
     color: $primary-background;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    position: relative;
+    //bottom: 0vh;
 }
 
 .logo-footer{
