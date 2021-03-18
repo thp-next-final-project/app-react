@@ -5,13 +5,13 @@ import logo from "../../../../assets/logo.png";
 
 const MenuHome = () => {
 
-    const navHeight = window.innerHeight/15;
+    const navHeight = window.innerHeight/10;
     const [navToggle, setNavToggle] = useState(false);
 
    const handleScroll =() => {    
-        console.log(window.scrollY);
+        //console.log(window.scrollY);
         if (window.scrollY > navHeight){
-            console.log("scroll class")
+            //console.log("scroll class")
             setNavToggle(true)
         } else {        
             setNavToggle(false)
