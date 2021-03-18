@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
@@ -39,14 +39,24 @@ const Login = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
-
+	const [email, setEmail] = useState("");
+	const [emailError, setEmailError] = useState("");
+	const emailUpdate = (e:any) => {
+		setEmail(e.target.value);
+		const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		if(!e.target.value.match(regex)){
+			setEmailError("Veuillez renseigner un e-mail valide.");
+		} else {
+			setEmailError("");
+		}
+	}
 	return(
 		<section className="signup-form ">
 			<h2>Login</h2>
 			<form onSubmit={handleLogin}>
 				<div className="form-container">
 					<div className="half">
-						<Field label="Email" name="email"/>
+						<Field label="Email" name="email" value={email} change={emailUpdate} error={emailError}/>
 					</div>
 				</div>
 				<div className="form-container">
