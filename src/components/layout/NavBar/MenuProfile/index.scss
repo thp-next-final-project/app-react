@@ -66,6 +66,7 @@
     visibility: visible;
   }
   .menu-nav {
+    margin-top: 0;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -74,8 +75,8 @@
     overflow: hidden;
     background: $secondary-color;
     list-style-type: none;
-    padding-right: 1rem;
-    transform: translateY(-100%);
+    padding-right: 2rem;
+    transform: translateY(-100vh);
     @include transition-ease;
 
     &.open {

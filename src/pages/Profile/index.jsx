@@ -15,6 +15,8 @@ const Profile = () => {
 	return(
 		<>
 			<p>Mon Profile</p>
+			<h3>test</h3>
+
 		</>
 	)
 }

@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import MessageError from '../../components/MessageError';
-import {Field} from '../../components/fields/index';
+import {Field} from '../../components/Fields';
+import { REGEX } from '../../config/config';
 import { Link } from "react-router-dom";
-
 
 const Register = () => {
 	const user:any = useSelector((state) => state);
@@ -48,8 +48,7 @@ const Register = () => {
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {
 		setEmail(e.target.value);
-		const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		if(!e.target.value.match(regex)){
+		if(!e.target.value.match(REGEX)){
 			setEmailError("Veuillez renseigner un e-mail valide.");
 		} else {
 			setEmailError("");
@@ -71,8 +70,13 @@ const Register = () => {
 	const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
 	const updatePasswordConfirmation = (e:any) => {
 		setPasswordConfirmation(e.target.value);
+<<<<<<< HEAD
 		if(e.target.value != password){
 			setPasswordConfirmationError("Le mot de passe et sa confirmation doivent être identiques");
+=======
+		if(e.target.value !== password){
+			setPasswordConfirmationError("Le mot de passe et sa confirmation doivent etre identiques");
+>>>>>>> development
 		} else {
 			setPasswordConfirmationError("");
 		}

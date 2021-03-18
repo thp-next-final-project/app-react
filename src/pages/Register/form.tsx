@@ -1,4 +1,4 @@
-import {Field} from '../../components/fields/index';
+import {Field} from '../../components/Fields';
 
 export const RegistrationForm = () => {
 

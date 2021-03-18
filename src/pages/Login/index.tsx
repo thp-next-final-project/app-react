@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
-import {Field} from '../../components/fields/index';
+import {Field} from '../../components/Fields';
 import MessageError from '../../components/MessageError';
+import { REGEX } from '../../config/config';
 
 
 const Login = () => {
@@ -43,8 +44,7 @@ const Login = () => {
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {
 		setEmail(e.target.value);
-		const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		if(!e.target.value.match(regex)){
+		if(!e.target.value.match(REGEX)){
 			setEmailError("Veuillez renseigner un e-mail valide.");
 		} else {
 			setEmailError("");
