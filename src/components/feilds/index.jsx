@@ -6,7 +6,7 @@ export const Feild = (props) => {
             props.area 
             &&
             <textarea name="" id="" cols="30" rows="10" className="input" 
-            placeholder=" " value={props.value} onChange={props.change} ></textarea>
+            placeholder=" " value={props.value} onChange={props.change}  name={props.name}></textarea>
             ||
             <input type={
                 props.password
@@ -15,7 +15,7 @@ export const Feild = (props) => {
                 ||
                 "text"
             } className="input" placeholder=" "
-              value={props.value} onChange={props.change}/> }
+              value={props.value} onChange={props.change} name={props.name}/> }
             <div className="label">
                 {props.label}
             </div>
