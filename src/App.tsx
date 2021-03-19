@@ -17,24 +17,33 @@ import Profile from './pages/Profile';
 import Navbar from './components/Layout/NavBar';
 import { Footer } from './components/Layout/Footer';
 
+
+
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
   const { data, get } = useFetch(true);
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
 	
   const autoLogin = (id?:string) => {
     get(`api/users/${id}`);
+    console.log("test");
+
   }
 
   useEffect(() => {
     const id = Cookies.get(COOKIE_ID);
-		if (!user.isLogged && id) {
-			autoLogin(id);
-      console.log(data);
-		}
+    console.log(id)
+    console.log(user)
+    
     if (!user.isLogged && id && data) {
       dispatch({ type: GET_USER, data });
     }
+		if (!user.isLogged && id) {
+      autoLogin(id);
+      console.log(data);
+		}
+    
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, data])
 

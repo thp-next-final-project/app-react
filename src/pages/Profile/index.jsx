@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import ProfileMenu from '../../components/ProfileMenu/index';
+import ProfileInformations from './Informations'
 
 const Profile = () => {
 	const user = useSelector((state) => state);
@@ -13,12 +15,15 @@ const Profile = () => {
 	}, [user]);
 
 	return(
-		<>
-			<p>Mon Profile</p>
-			<h3>test</h3>
-			<p>hfhfhf</p>
+		<div className="profile-container">
+			<div className="profile-menu">
+				<ProfileMenu/>
+			</div>
+			<div className="profile-content">
+				<ProfileInformations/>
+			</div>
 
-		</>
+		</div>
 	)
 }
 

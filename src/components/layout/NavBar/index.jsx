@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 
-import MenuHome from './MenuHome';
-import MenuProfile from './MenuProfile';
+import MenuHome from './NavHome';
+import MenuProfile from './NavProfile';
 
 const NavBar = () => {
     const user = useSelector((state) => state);
