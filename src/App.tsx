@@ -21,21 +21,23 @@ import { Footer } from './components/Layout/Footer';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
-  const { data, get } = useFetch(true);
+  const { data , get } = useFetch(true);
   const dispatch = useDispatch();
 
 	
   const autoLogin = (id?:string) => {
     get(`api/users/${id}`);
-    console.log("test");
+    console.log("autologin");
 
   }
 
   useEffect(() => {
     const id = Cookies.get(COOKIE_ID);
+    console.log("###############");
     console.log(id)
     console.log(user)
-    
+    console.log("###############");
+
     if (!user.isLogged && id && data) {
       dispatch({ type: GET_USER, data });
     }
