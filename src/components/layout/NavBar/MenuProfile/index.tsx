@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT } from "../../../../stores/actions";
+import logo from "../../../../assets/logo.png";
 
 const MenuProfile = () => {
   const [ toggle, setToggle ] = useState(false);
@@ -26,11 +27,19 @@ const MenuProfile = () => {
     dispatch( { type: LOGOUT } );
   };
   return (
-    <>
+    <nav className="nav-profile">
+      
+        <Link className="nav-left" to="/profile">                
+            <img className="logo" src={logo} alt="logo" />
+            <div className="text-logo">         
+                <div className="sport">Sport</div><div className="eat">eat</div>
+            </div>
+        </Link>
+      
       <div onClick={handleClick} className="menu-btn">
         <span  className={`menu-btn burger ${toggle ? "open" : ""}`}></span>
       </div>
-      <nav className={`nav-burger ${toggle ? "open" : ""}`}>
+      <div className={`nav-burger ${toggle ? "open" : ""}`}>
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
               <Link className="navItems" to="/login">
@@ -40,10 +49,10 @@ const MenuProfile = () => {
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
             <a href="test" >Test</a>
           </li>
-          <button onClick={handleLogout}>Log Out</button>
+          <button onClick={handleLogout}>Se déconnecter</button>
         </ul>
-      </nav>
-    </>
+      </div>
+    </nav>
   )
 }
 

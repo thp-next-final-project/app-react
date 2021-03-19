@@ -28,7 +28,7 @@ const MenuHome = () => {
 
 
     return (
-        <nav className={`menu-home ${navToggle? "scrolledNavbar" : ""}`} >
+        <nav className={`nav-home ${navToggle? "scrolledNavbar" : ""}`} >
                       
             <Link className="nav-left" to="/">                
                 <img className="logo" src={logo} alt="logo" />

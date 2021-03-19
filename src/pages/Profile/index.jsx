@@ -16,6 +16,7 @@ const Profile = () => {
 		<>
 			<p>Mon Profile</p>
 			<h3>test</h3>
+			<p>hfhfhf</p>
 
 		</>
 	)

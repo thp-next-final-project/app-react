@@ -70,7 +70,7 @@ const Register = () => {
 	const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
 	const updatePasswordConfirmation = (e:any) => {
 		setPasswordConfirmation(e.target.value);
-		if(e.target.value != password){
+		if(e.target.value !== password){
 			setPasswordConfirmationError("Le mot de passe et sa confirmation doivent être identiques");
 		} else {
 			setPasswordConfirmationError("");

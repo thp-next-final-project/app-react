@@ -1,8 +1,6 @@
-.menu-home {
-    display: block;
-    width: 100%;
+.nav-home {
+    width: 100vw;
     height: 10vh;
-    // background-color: transparent;
     background-color: transparent;
     color: $primary-background;
     display: flex;
@@ -13,6 +11,7 @@
     position: fixed;
     z-index: 5;
     top: 0;
+}
     
     .nav-right{
         width: 70vw;
@@ -22,7 +21,7 @@
     }
 
     .nav-left{
-        width: 30%;
+        width: 30vw;
         display: inline-flex;
         align-items: center;
         text-decoration: none;
@@ -68,7 +67,7 @@
       width: 100%;
     }
 
-  }
+  
 
   .scrolledNavbar{
     @include glass (0.1);

@@ -2,6 +2,14 @@
   transition: all 0.5s ease-in-out;
 }
 
+.nav-profile{
+  //display: block;
+  display: flex;
+  flex-direction: row;
+  height: 10vh;
+  width: 100vw;
+}
+
 .menu-btn {
   position: absolute;
   z-index: 1;
@@ -111,4 +119,6 @@
     transition-delay: $var * 0.1s + 0.15s;
   }
 }
+
+
 

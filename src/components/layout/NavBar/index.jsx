@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
+
 import MenuHome from './MenuHome';
 import MenuProfile from './MenuProfile';
 
@@ -17,7 +18,7 @@ const NavBar = () => {
 	}, [user])
 
     return (
-        <header>
+        <header>            
             { 
                 user.isLogged ?  <MenuProfile/> : <MenuHome/>
             }

@@ -7,4 +7,4 @@ export const RegistrationForm = () => {
             <Field></Field>
         </div>
     );
-}
+};
