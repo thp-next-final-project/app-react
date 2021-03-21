@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Navbar from './components/Layout/NavBar';
 import { Footer } from './components/Layout/Footer';
+import {Wods} from './pages/Wods';
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
@@ -55,6 +56,12 @@ const App = (): JSX.Element => {
           <Route path="/profile" exact>
             <Profile/>
           </Route>
+          <Route path="/train" exact>
+            <Wods/>
+          </Route>
+          <Route path="/train/progress/:section?">
+            <Wods/>
+          </Route>
         </Switch>
         <Footer/>
       </Router>      
@@ -64,3 +71,9 @@ const App = (): JSX.Element => {
 };
 
 export default App;
+
+
+/*
+entrainement du jour !
+
+*/

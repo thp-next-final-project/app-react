@@ -1,0 +1,44 @@
+.wod-container {
+    @include glass(0.1);
+    width: 70%;
+    margin: 10vh auto;
+    margin-bottom: 0;
+    .choice{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        .card{
+            @include glass(0.2);
+            color: black;
+            cursor: pointer;
+            padding: .5em 1em;
+            margin: .5em;
+        }
+    }
+    .line{
+        width: 90%;
+        margin: 1.5em auto;
+        height: 2px;
+        @include glass(0.2);
+        border: none !important;
+        &:hover{
+            border: none !important;
+            transform: none !important;
+        }
+    }
+    .menu{
+        width: 90%;
+        margin: .5em auto;
+        margin-bottom: 1.5em;
+        .title, .sub{
+            width: 100%;
+            text-align: center;
+            h2{
+                font-weight: bolder;
+            }
+            h3{
+                font-weight: bold;
+            }
+        }
+    }
+}

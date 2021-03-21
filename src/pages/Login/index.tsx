@@ -6,6 +6,7 @@ import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
 import MessageError from '../../components/MessageError';
 import { REGEX } from '../../config/config';
+import classnames from 'classnames';
 
 
 const Login = () => {
@@ -40,16 +41,18 @@ const Login = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);
+
 	const [email, setEmail] = useState("");
-	const [emailError, setEmailError] = useState("");
+	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
 		setEmail(e.target.value);
-		if(!e.target.value.match(REGEX)){
-			setEmailError("Veuillez renseigner un e-mail valide.");
-		} else {
-			setEmailError("");
-		}
+		setEmailError(!e.target.value.match(REGEX));
 	}
+
+	const btnClassNames = classnames("btn", {
+		"btn-error" : emailError
+	});
+
 	return(
 		<section className="signup-form ">
 			<h2>Login</h2>
@@ -66,13 +69,7 @@ const Login = () => {
 
 				</div>
 				<div className="btn-container">
-                        <button type="submit" className={`btn ${
-                            emailError
-                            ?
-                            "btn-error"
-                            :
-                            ""
-                        }`}>Se connecter</button>
+                        <button type="submit" className={btnClassNames} disabled={emailError}>Se connecter</button> {/* utiliser disabled */}
                     </div>
 			</form>
 			{errors && <MessageError message={errors}/>}

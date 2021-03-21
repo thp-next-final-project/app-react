@@ -2,9 +2,10 @@
 
 @import './config/glassmorphism.scss';
 @import './pages/Home';
-@import './components/layout/NavBar/MenuHome/index.scss';
-@import './components/layout/NavBar/MenuProfile/index.scss';
-@import './components/layout/footer/index.scss';
+@import './components/Layout/NavBar/MenuHome/index.scss';
+@import './components/Layout/NavBar/MenuProfile/index.scss';
+@import './components/Layout/Footer/index.scss';
 @import './pages/Home/presentation/index.scss';
-@import './components/fields/index.scss';
+@import './components/Fields/index.scss';
 @import './pages/formsLayout.scss';
+@import './pages/Wods/index.scss'
