@@ -1,0 +1,27 @@
+.wods-container{
+    width: 70%;
+    margin: 1em auto;
+    padding: 2em 1em;
+    @include glass(0.2);
+    .workout-selector-container{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        .workout-selector{
+            padding: 2em 1em;
+            @include glass(0.2);
+            color: $primary-background;
+        }
+    }
+    .line{
+        width: 90%;
+        margin: 1em auto;
+        @include glass(0.2);
+        &:hover{
+            transform: none;
+        }
+    }
+    .workout-container{
+        display: none;
+    }
+}

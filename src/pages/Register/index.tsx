@@ -20,7 +20,7 @@ const Register = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, data, token, post} = useFetch();
+	const { errors, responseData , token, post} = useFetch();
 
 
 	const handleSubmit = (e:any) => {
@@ -39,11 +39,12 @@ const Register = () => {
 	}
 	
 	useEffect(() => {
-		if (data) {
+		if (responseData) {
+			const { data }:any = responseData;
 			dispatch({ type: LOGIN, data, token});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data]);	
+	}, [responseData]);	
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {

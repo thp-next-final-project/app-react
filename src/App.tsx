@@ -18,6 +18,7 @@ import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
+import Wods from './pages/Wods'
 
 
 const App = (): JSX.Element => {
@@ -61,9 +62,13 @@ const App = (): JSX.Element => {
           <Route path="/informations" exact>
             { user.isLogged ? <ProfileInformations/> : <Home/> }
           </Route>
-          <Route path="/parameters" exact>
-            {/* { user.isLogged ? <UpdateRegister/> : <Home/> } */}
-            <UpdateRegister/>
+          { user.isLogged &&
+            <Route path="/parameters" exact>
+              <UpdateRegister/>  
+            </Route> 
+          }
+          <Route path="/wods" exact>
+            <Wods/>
           </Route>
         </Switch>
         <Footer/>

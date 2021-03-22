@@ -18,8 +18,7 @@ const MenuProfile = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
-  const handleClick = (e:any) => {
-    e.preventDefault();
+  const handleClick = (e:any) => {    
     setToggle(!toggle);
     setItemActive(false);
   }
@@ -41,17 +40,17 @@ const MenuProfile = () => {
       </div>
       <div className={`nav-burger ${toggle ? "open" : ""}`}>
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
-          <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/">
-                Mon profil
+          <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "" : "active"}`}>
+              <Link onClick={handleClick} className="navItemsBurger" to="/">
+                Profil
               </Link>
           </li>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/informations">
-                Mes informations
+              <Link onClick={handleClick} className="navItemsBurger" to="/parameters">
+                Paramètres du compte
               </Link>
           </li>
-          <button className="btn" onClick={handleLogout}>Se déconnecter</button>
+          <button className="btn btnBurger" onClick={handleLogout}>Se déconnecter</button>
         </ul>
       </div>
     </nav>

@@ -4,7 +4,7 @@ import { API_URL, COOKIE_TOKEN } from '../config/config';
 
 export const useFetch = ( withAuth = false ) => {
   const [ isLoading, setIsLoading ] = useState(false);
-  const [ data, setData ] = useState(null);
+  const [ responseData, setResponseData ] = useState(null);
   const [ token, setToken ] = useState(Cookies.get(COOKIE_TOKEN));
   const [ errors, setErrors] = useState(null);
 
@@ -24,13 +24,15 @@ export const useFetch = ( withAuth = false ) => {
       })
 				.then((response) => response.json())
 				.then ((response) => {
-					setData(response)
+					setResponseData(response)
 				})
         .catch(error => {setErrors(error)})
         .finally(() => {setIsLoading(false)})
   };
 
   const post = (path:string, postData:Object) => {
+    console.log("in post ", headers);
+    
     setIsLoading(true);
     setErrors(null);
     fetch( API_URL + path,
@@ -45,8 +47,8 @@ export const useFetch = ( withAuth = false ) => {
           } 
           return response.json()
         })
-				.then((response) => {          
-					setData(response.data)
+				.then((response) => {         
+          setResponseData(response)
 				})
         .catch(error => setErrors(error))
         .finally(() => setIsLoading(false))
@@ -67,8 +69,9 @@ export const useFetch = ( withAuth = false ) => {
           } 
           return response.json()
         })
-				.then((response) => {          
-					setData(response.data)
+				.then((response) => {        
+          console.log(response)  
+					setResponseData(response)
 				})
         .catch(error => setErrors(error))
         .finally(() => setIsLoading(false))
@@ -77,7 +80,7 @@ export const useFetch = ( withAuth = false ) => {
   return {
     isLoading,
     errors,
-    data,
+    responseData,
     token,
     headers,
     get,

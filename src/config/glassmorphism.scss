@@ -13,6 +13,8 @@
                             .09 * (10 * $intensity) );
 
     perspective: 800px;
+    z-index: 1;
+    
     &:hover{
         background-color: rgba($color: $secondary-background, 
                             $alpha: $intensity + ($intensity/6));

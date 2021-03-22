@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import MessageError from '../../components/MessageError';
@@ -7,9 +8,18 @@ import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
 
 const UpdateRegister = () => {
-	const dispatch = useDispatch();	
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const user:any = useSelector((state) => state);
 
-	const { errors, data, token, patch} = useFetch();
+	const { errors, responseData, token, patch} = useFetch();
+
+	useEffect(() => {
+		if (!user.isLogged) {
+			history.push(`/`);
+		}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user])
 
 
 	const handleSubmit = (e:any) => {
@@ -28,12 +38,13 @@ const UpdateRegister = () => {
 	}
 	
 	useEffect(() => {
-		if (data) {
+		if (responseData) {
+			const {data}:any = responseData;
 			dispatch({ type: LOGIN, data, token});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data]);	
-	
+	}, [responseData]);	
+
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {
@@ -87,7 +98,7 @@ const UpdateRegister = () => {
 						</div>
 						<div className="form-container">
 							<div className="half">
-								<Field label="Mot de passe" password name="password" value={password} change={updatePassword} error={passwordError} />
+								<Field label="Mot de passe" password name="password" value={password} change={updatePassword} error={passwordError}  />
 							</div>
 							<div className="half">
 								<Field label="Confirmation du mot de passe" password value={passwordConfirmation} change={updatePasswordConfirmation} error={passwordConfirmationError}/>
