@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import MenuProfile from './components/Layout/NavBar/NavProfile/index';
 import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
+import Wods from './pages/Wods'
 
 
 const App = (): JSX.Element => {
@@ -55,6 +56,9 @@ const App = (): JSX.Element => {
           </Route>
           <Route path="/signup" exact>
             <Register/>
+          </Route>
+          <Route path="/wods" exact>
+            <Wods/>
           </Route>
         </Switch>
         <Footer/>
