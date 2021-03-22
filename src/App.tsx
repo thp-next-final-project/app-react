@@ -16,6 +16,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Navbar from './components/Layout/NavBar';
 import { Footer } from './components/Layout/Footer';
+import ProfileInformations from './pages/Profile/Informations';
 
 
 
@@ -26,7 +27,7 @@ const App = (): JSX.Element => {
 
 	
   const autoLogin = (id?:string) => {
-    get(`api/users/${id}`);
+    get(`/api/users/${id}`);
     console.log("test");
 
   }
@@ -63,6 +64,9 @@ const App = (): JSX.Element => {
           </Route>
           <Route path="/profile" exact>
             <Profile/>
+          </Route>
+          <Route path="/profile/informations" exact>
+            <ProfileInformations/>
           </Route>
         </Switch>
         <Footer/>

@@ -17,7 +17,7 @@ const ProfileMenu = () => {
             <ul className="list-menu">    
                 <li className="items-list-menu">
                     <img className="icons-menu" src={informations} alt="icône informations"/>
-                    <Link className="link-menu" to="/profile">Informations</Link>
+                    <Link className="link-menu" to="/profile/informations">Informations</Link>
                 </li>  
                 
                 <li className="items-list-menu">

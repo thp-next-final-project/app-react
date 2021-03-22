@@ -64,6 +64,7 @@
 
 .nav-burger {
   position: fixed;
+  line-height: 50px;
   top: 0;
   left: 0;
   width: 100vw;
@@ -74,6 +75,8 @@
   }
   .menu-nav {
     margin-top: 0;
+    margin-left: 0;
+
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -118,6 +121,7 @@
     transition-delay: $var * 0.1s + 0.15s;
   }
 }
+
 
 
 

@@ -42,14 +42,16 @@ const MenuProfile = () => {
       <div className={`nav-burger ${toggle ? "open" : ""}`}>
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/login">
-                test
+              <Link className="navItems" to="/profile">
+                Mon profil
               </Link>
           </li>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-            <a href="test" >Test</a>
+              <Link className="navItems" to="/login">
+                Mes informations
+              </Link>
           </li>
-          <button onClick={handleLogout}>Se déconnecter</button>
+          <button className="btn" onClick={handleLogout}>Se déconnecter</button>
         </ul>
       </div>
     </nav>
