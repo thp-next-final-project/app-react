@@ -5,12 +5,12 @@ import { LOGIN, LOGOUT, GET_USER } from './actions'
 
 
 const initialUserData = {
-  id: null,
+  id: Cookies.get(COOKIE_ID) || null,
   email: null,
   firstname: null,
   lastname: null,
   role: null,
-  isLogged: false
+  isLogged: Boolean(Cookies.get(COOKIE_TOKEN))
 }
 
 const userReducer = (state = initialUserData, payload) => {

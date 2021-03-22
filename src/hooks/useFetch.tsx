@@ -26,8 +26,8 @@ export const useFetch = ( withAuth = false ) => {
 				.then ((response) => {
 					setData(response)
 				})
-        .catch(error => setErrors(error))
-        .finally(() => setIsLoading(false))
+        .catch(error => {setErrors(error)})
+        .finally(() => {setIsLoading(false)})
   };
 
   const post = (path:string, postData:Object) => {
@@ -52,12 +52,36 @@ export const useFetch = ( withAuth = false ) => {
         .finally(() => setIsLoading(false))
   };
   
+  const patch = (path:string, postData:Object) => {
+    setIsLoading(true);
+    setErrors(null);
+    fetch( API_URL + path,
+      {
+        method: 'patch',
+        headers,
+        body: JSON.stringify(postData)
+      })
+				.then((response) => {
+          if ((path === '/api/signup' )  && response.status === 200) {
+            setToken(response.headers.get('Authorization') || "");
+          } 
+          return response.json()
+        })
+				.then((response) => {          
+					setData(response.data)
+				})
+        .catch(error => setErrors(error))
+        .finally(() => setIsLoading(false))
+  };
+
   return {
     isLoading,
     errors,
     data,
     token,
+    headers,
     get,
-    post
+    post,
+    patch
   };
 }

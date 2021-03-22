@@ -29,7 +29,7 @@ const MenuProfile = () => {
   return (
     <nav className="nav-profile">
       
-        <Link className="nav-left" to="/profile">                
+        <Link className="nav-left" to="/">                
             <img className="logo" src={logo} alt="logo" />
             <div className="text-logo">         
                 <div className="sport">Sport</div><div className="eat">eat</div>
@@ -42,12 +42,12 @@ const MenuProfile = () => {
       <div className={`nav-burger ${toggle ? "open" : ""}`}>
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/profile">
+              <Link className="navItems" to="/">
                 Mon profil
               </Link>
           </li>
           <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/login">
+              <Link className="navItems" to="/informations">
                 Mes informations
               </Link>
           </li>

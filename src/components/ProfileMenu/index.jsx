@@ -12,7 +12,7 @@ const ProfileMenu = () => {
     return (
         <>
             <div className="profile-picture-container">
-                <img className="profile-picture" src={profilePicture} alt="photo de profil"/>
+                <img className="profile-picture" src={profilePicture} alt="nom de l'utilisateur"/>
             </div>
             <ul className="list-menu">    
                 <li className="items-list-menu">

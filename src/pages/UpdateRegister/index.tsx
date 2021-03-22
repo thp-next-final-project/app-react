@@ -1,32 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import MessageError from '../../components/MessageError';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
-import { Link } from "react-router-dom";
 
-const Register = () => {
-	const user:any = useSelector((state) => state);
-	const history = useHistory();
-	const dispatch = useDispatch();
-	
-	useEffect(() => {
-		if (user.isLogged) {
-			history.push('/');
-		}
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user])
+const UpdateRegister = () => {
+	const dispatch = useDispatch();	
 
-	const { errors, data, token, post} = useFetch();
+	const { errors, data, token, patch} = useFetch();
 
 
 	const handleSubmit = (e:any) => {
 		e.preventDefault();	
 		console.log(e.target)
-		const createUser = {
+		const updateUser = {
 			user: {
 				firstname: e.target.firstname.value,
 				lastname: e.target.lastname.value,
@@ -35,7 +24,7 @@ const Register = () => {
 			}
 		};
 
-		post('/api/signup', createUser);
+		patch('/api/signup', updateUser);
 	}
 	
 	useEffect(() => {
@@ -44,6 +33,7 @@ const Register = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [data]);	
+	
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {
@@ -80,7 +70,7 @@ const Register = () => {
 	return (
 			<section className="signup-form">
 				<div className="signup-container">
-					<h2>Inscription</h2>
+					<h2>Modifier mes paramètres</h2>
 					<form onSubmit={handleSubmit}>
 						<div className="form-container">
 							<div className="half">
@@ -111,13 +101,8 @@ const Register = () => {
 								"btn-error"
 								:
 								""
-							}`}>S'inscrire</button>
-						</div>
-						<div className="link-already-signup">
-							<Link to="/login">
-								J'ai déjà un compte !
-							</Link>
-						</div>     
+							}`}>Modifier</button>
+						</div>   
 					</form>
 					{errors && <MessageError message={errors}/>}
 				</div>
@@ -126,4 +111,4 @@ const Register = () => {
 	)
 }
 
-export default Register;
+export default UpdateRegister;
