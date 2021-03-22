@@ -26,8 +26,8 @@ export const useFetch = ( withAuth = false ) => {
 				.then ((response) => {
 					setData(response)
 				})
-        .catch(error => setErrors(error))
-        .finally(() => setIsLoading(false))
+        .catch(error => {setErrors(error)})
+        .finally(() => {setIsLoading(false)})
   };
 
   const post = (path:string, postData:Object) => {
@@ -57,6 +57,7 @@ export const useFetch = ( withAuth = false ) => {
     errors,
     data,
     token,
+    headers,
     get,
     post
   };

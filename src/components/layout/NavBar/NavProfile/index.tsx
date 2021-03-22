@@ -29,7 +29,7 @@ const MenuProfile = () => {
   return (
     <nav className="nav-profile">
       
-        <Link className="nav-left" to="/profile">                
+        <Link className="nav-left" to="/">                
             <img className="logo" src={logo} alt="logo" />
             <div className="text-logo">         
                 <div className="sport">Sport</div><div className="eat">eat</div>
