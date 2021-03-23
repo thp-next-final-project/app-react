@@ -31,7 +31,6 @@ export const useFetch = ( withAuth = false ) => {
   };
 
   const post = (path:string, postData:Object) => {
-    console.log("in post ", headers);
     
     setIsLoading(true);
     setErrors(null);
@@ -47,7 +46,8 @@ export const useFetch = ( withAuth = false ) => {
           } 
           return response.json()
         })
-				.then((response) => {         
+				.then((response) => {  
+          console.log(response)       
           setResponseData(response)
 				})
         .catch(error => setErrors(error))
@@ -55,20 +55,18 @@ export const useFetch = ( withAuth = false ) => {
   };
   
   const patch = (path:string, postData:Object) => {
+    console.log("in patch ", headers);
+
     setIsLoading(true);
     setErrors(null);
     fetch( API_URL + path,
       {
-        method: 'patch',
+        method: 'PATCH',
         headers,
         body: JSON.stringify(postData)
       })
-				.then((response) => {
-          if ((path === '/api/signup' )  && response.status === 200) {
-            setToken(response.headers.get('Authorization') || "");
-          } 
-          return response.json()
-        })
+        .then((response) => (response.json()))
+        
 				.then((response) => {        
           console.log(response)  
 					setResponseData(response)

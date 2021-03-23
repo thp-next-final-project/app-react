@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import Cookies from 'js-cookie';
 import { COOKIE_TOKEN, COOKIE_ID } from '../config/config';
-import { LOGIN, LOGOUT, GET_USER } from './actions'
+import { LOGIN, LOGOUT, GET_USER, UPDATE } from './actions'
 
 
 const initialUserData = {
@@ -44,6 +44,17 @@ const userReducer = (state = initialUserData, payload) => {
         firstname: data.attributes.firstname,
         lastname: data.attributes.lastname,
         email: data.attributes.email,
+        isLogged: true
+      };
+      case UPDATE:
+      if (!data || !data.id) {
+        throw new Error('Data for login must not be empty.');
+      }
+      return {
+        id: parseInt(data.id),
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
         isLogged: true
       };
     case LOGOUT:
