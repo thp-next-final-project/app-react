@@ -11,8 +11,6 @@
         .workout-selector{
             padding: 2em 1em;
             @include glass(0.2);
-            
-            color: $primary-background;
         }
     }
     .line{
@@ -32,8 +30,20 @@
             margin: 1em auto;
             padding: 1em 2em;
             @include glass(0.2);
-            
-            color: $primary-background;
+            transform: none !important;
+            .exos{
+                width: 90%;
+                margin: 1em auto;
+                .exo{
+                    margin: 1em auto;
+                    h3{
+                        margin: 0 .5em;
+                    }
+                }
+            }
         }
+    }
+    *:not(.btn){
+        color: $primary-background;
     }
 }
