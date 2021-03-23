@@ -16,6 +16,9 @@ const MenuProfile = () => {
   const history = useHistory();
   const user:any = useSelector((state) => state);
 
+  const navHeight = window.innerHeight/10;
+  const [navToggle, setNavToggle] = useState(false);
+
   useEffect(() => {
 		if (!user.isLogged) {
 			history.push(`/`);
@@ -43,8 +46,31 @@ const MenuProfile = () => {
     dispatch( { type: LOGOUT } );
   };
 
+ 
+
+ const handleScroll =() => {    
+      //console.log(window.scrollY);
+      if (window.scrollY > navHeight){
+          //console.log("scroll class")
+          setNavToggle(true)
+      } else {        
+          setNavToggle(false)
+      }
+  }
+ 
+  useEffect(() => {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+  
+      return () => {
+          window.removeEventListener('scroll', handleScroll);
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
+
+
   return (
-    <nav className="nav-profile">
+    <nav className={`nav-profile ${navToggle? "scrolledNavbar" : ""}`} >
       
         <Link className="nav-left" to="/">                
             <img className="logo" src={logo} alt="logo" />
@@ -61,11 +87,6 @@ const MenuProfile = () => {
           <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/") ? "active" : ""}`}>
               <Link onClick={handleClick} className="navItemsBurger" to="/">
                 Profil
-              </Link>
-          </li>
-          <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/meals-of-the-day") ? "active" : ""}`}>
-              <Link onClick={handleClick} className="navItemsBurger" to="/meals-of-the-day">
-                Menu de la journée
               </Link>
           </li>
           <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/parameters") ? "active" : ""}`}>

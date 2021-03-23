@@ -6,6 +6,7 @@
 .profile-menu{
     @include glass (0.15);
     width: 15vw;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,7 +14,10 @@
     border-radius: 20px;
     margin: 50px 60px 20px 30px;
     padding: 40px;
- 
+}
+.profile-menu-container{
+  width: 15vw;
+
 }
 
 .icons-menu{
@@ -45,12 +49,14 @@
 .link-menu{
     text-decoration: none;
     color: inherit;
+    z-index: 2;
+
 }
 
 .list-menu{
     list-style: none;
     padding: 0;
-    line-height: 40px;  
+    height: 40vh;  
 }
 
 .items-list-menu{
@@ -59,7 +65,6 @@
     align-items: center;
     text-decoration: none; 
     width: 19vw;
-    line-height: 50px;
     height: 50px;
     padding-left: 5vw;
     cursor: pointer;

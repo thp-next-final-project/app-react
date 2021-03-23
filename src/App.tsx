@@ -19,7 +19,7 @@ import { Footer } from './components/Layout/Footer';
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
 import Wods from './pages/Wods';
-import Mod from './pages/Mod';
+import NoMatch from './pages/NoMatch';
 
 
 const App = (): JSX.Element => {
@@ -39,6 +39,8 @@ const App = (): JSX.Element => {
     })
   }
 
+  console.log(user.isLogged)
+
   useEffect(() => {
     if (user.id) {
       getUser()
@@ -51,15 +53,14 @@ const App = (): JSX.Element => {
       <Router>
        { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
         <Switch>
-          <Route path="/" exact>
-            { user.isLogged ? <Profile/> : <Home/> }
-          </Route>
+          
           <Route path="/login" exact>
             <Login/>
           </Route>
           <Route path="/signup" exact>
             <Register/>
           </Route>
+          
           <Route path="/informations" exact>
             { user.isLogged ? <ProfileInformations/> : <Home/> }
           </Route>
@@ -68,14 +69,16 @@ const App = (): JSX.Element => {
               <UpdateRegister/>  
             </Route> 
           }
-          { user.isLogged &&
-            <Route path="/meals-of-the-day" exact>
-              <Mod/>  
-            </Route> 
-          }
-          <Route path="/wods" exact>
-            <Wods/>
+                 
+          <Route path="/" >
+            { user.isLogged ? <Profile/> : <Home/> }
           </Route>
+
+          <Route>
+            <NoMatch />
+          </Route>
+          
+          
         </Switch>
         <Footer/>
       </Router>      

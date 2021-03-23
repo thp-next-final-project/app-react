@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch'
-import Menu from '../../components/Menu/index';
+import Menu from '../../components/Repas/index';
 
 
 const Wod = () => {
@@ -15,10 +15,10 @@ const Wod = () => {
 }, [Mod])
   return (
     <>
-      { (!Mod && isLoading) && <p>2 sec sa charge</p>}
+      { (!Mod && isLoading) && <p>2 sec ça charge</p>}
       { Mod && 
       <div className="menu-of-the-day"> 
-        <p>Mon objectif de calorie pour la journée : {Mod.calories}</p> 
+        <p>Mon objectif de calorie pour la journée : {Mod.calories} calories</p> 
           { Mod.meals.map((meal, index) => (
             <Menu
                 meal={meal}

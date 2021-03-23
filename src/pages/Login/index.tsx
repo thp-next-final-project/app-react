@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
-import MessageError from '../../components/MessageError';
+import MessageError from '../../components/Alerts/MessageError';
 import { REGEX } from '../../config/config';
 
 

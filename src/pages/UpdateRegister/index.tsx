@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { UPDATE } from '../../stores/actions';
-import MessageError from '../../components/MessageError';
+import MessageError from '../../components/Alerts/MessageError';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
 import MessageSucess from '../../components/Alerts/MessageSucess'
