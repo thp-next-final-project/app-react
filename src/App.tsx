@@ -18,7 +18,8 @@ import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
-import Wods from './pages/Wods'
+import Wods from './pages/Wods';
+import Mod from './pages/Mod';
 
 
 const App = (): JSX.Element => {
@@ -65,6 +66,11 @@ const App = (): JSX.Element => {
           { user.isLogged &&
             <Route path="/parameters" exact>
               <UpdateRegister/>  
+            </Route> 
+          }
+          { user.isLogged &&
+            <Route path="/meals-of-the-day" exact>
+              <Mod/>  
             </Route> 
           }
           <Route path="/wods" exact>

@@ -111,9 +111,7 @@
       padding: 2rem 0;
       font-weight: 300;
       @include transition-ease;
-      &:hover {
-        color: $secondary-color;
-      }
+      
     }
   }
 }
@@ -130,6 +128,10 @@
   line-height: 80px;
   font-size: 30px;
   text-transform: uppercase;
+  &:hover {
+    text-decoration: underline;
+    color : $primary-color;
+  }
 }
 
 .btnBurger{

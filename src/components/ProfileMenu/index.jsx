@@ -26,7 +26,7 @@ const ProfileMenu = () => {
                 </li> 
                 <li className="items-list-menu">
                     <img className="icons-menu" src={menu} alt="icône menu"/>
-                    <Link className="link-menu" to="">Menus du jour</Link>
+                    <Link className="link-menu" to="/meals-of-the-day">Menus du jour</Link>
                 </li> 
                 <li className="items-list-menu">
                     <img className="icons-menu" src={favorite} alt="icône favoris"/>
