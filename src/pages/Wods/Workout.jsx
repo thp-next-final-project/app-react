@@ -9,6 +9,7 @@ const Workout = (props) => {
         if(!responseData){
             post("/wods", {})
         }
+        console.log(responseData);
         handleApiResponse(responseData?.wod);
     }, [responseData])
     return(
