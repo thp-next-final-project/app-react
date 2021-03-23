@@ -3,11 +3,17 @@ const ProfileInformations = () => {
     
     return (
         <>
-            <h1>Mon Profil</h1>
-            <h3>Mes infos</h3>
-            <p>Poids</p>
+            <h1>Tes informations</h1>
+            <h4>Ces informations nous permettront de choisir pour toi des séances de sport et des menus adaptés à ton objectif !</h4>
+            <p>Prénom</p>
+            <p>Age</p>
+            <p>Genre</p>
             <p>Taille</p>
-            <p>blabla</p>
+            <p>Poids</p>
+            <p>Objectif</p>
+            <p>Activité</p>
+
+            
             <p>autre infos</p>
         </>
     )
