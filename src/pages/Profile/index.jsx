@@ -9,8 +9,9 @@ const Profile = () => {
 			<div className="profile-menu">
 				<ProfileMenu/>
 			</div>
-			<div className="profile-content">
+			<div className="profile-content" id="profile-content">
 				<ProfileInformations/>
+				{/* faire un router ici */}
 			</div>
 
 		</div>

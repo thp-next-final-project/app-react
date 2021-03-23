@@ -31,7 +31,6 @@ export const useFetch = ( withAuth = false ) => {
   };
 
   const post = (path:string, postData:Object) => {
-    console.log("in post ", headers);
     
     setIsLoading(true);
     setErrors(null);
@@ -47,13 +46,35 @@ export const useFetch = ( withAuth = false ) => {
           } 
           return response.json()
         })
-				.then((response) => {         
+				.then((response) => {  
+          console.log(response)       
           setResponseData(response)
 				})
         .catch(error => setErrors(error))
         .finally(() => setIsLoading(false))
   };
   
+  const patch = (path:string, postData:Object) => {
+    console.log("in patch ", headers);
+
+    setIsLoading(true);
+    setErrors(null);
+    fetch( API_URL + path,
+      {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify(postData)
+      })
+        .then((response) => (response.json()))
+        
+				.then((response) => {        
+          console.log(response)  
+					setResponseData(response)
+				})
+        .catch(error => setErrors(error))
+        .finally(() => setIsLoading(false))
+  };
+
   return {
     isLoading,
     errors,
@@ -61,6 +82,7 @@ export const useFetch = ( withAuth = false ) => {
     token,
     headers,
     get,
-    post
+    post,
+    patch
   };
 }

@@ -16,7 +16,10 @@ import Profile from './pages/Profile';
 import MenuProfile from './components/Layout/NavBar/NavProfile/index';
 import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
-import Wods from './pages/Wods'
+import ProfileInformations from './pages/Profile/Informations';
+import UpdateRegister from './pages/UpdateRegister';
+import Wods from './pages/Wods';
+import Mod from './pages/Mod';
 
 
 const App = (): JSX.Element => {
@@ -57,6 +60,19 @@ const App = (): JSX.Element => {
           <Route path="/signup" exact>
             <Register/>
           </Route>
+          <Route path="/informations" exact>
+            { user.isLogged ? <ProfileInformations/> : <Home/> }
+          </Route>
+          { user.isLogged &&
+            <Route path="/parameters" exact>
+              <UpdateRegister/>  
+            </Route> 
+          }
+          { user.isLogged &&
+            <Route path="/meals-of-the-day" exact>
+              <Mod/>  
+            </Route> 
+          }
           <Route path="/wods" exact>
             <Wods/>
           </Route>

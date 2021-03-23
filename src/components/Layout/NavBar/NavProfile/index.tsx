@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import { 
+  Link,
+  useHistory,
+  useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { LOGOUT } from "../../../../stores/actions";
 import logo from "../../../../assets/logo.png";
 
 const MenuProfile = () => {
+  const page:any = useLocation();
   const [ toggle, setToggle ] = useState(false);
-  const [ itemActive, setItemActive ] = useState(false);
+  const [ hover, setHover ] = useState(false);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const user:any = useSelector((state) => state);
-
 
   useEffect(() => {
 		if (!user.isLogged) {
@@ -18,14 +22,27 @@ const MenuProfile = () => {
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
-  const handleClick = (e:any) => {
-    e.preventDefault();
+  
+  const handleActive = (path:string) => {
+    if (path === page.pathname) {
+        return true
+    }
+    return false
+  }
+  
+  const handleEnter = () => {
+    setHover(true)
+  }
+  const handleLeave = () => {
+    setHover(false)
+  }
+  const handleClick = (e:any) => {    
     setToggle(!toggle);
-    setItemActive(false);
   }
   const handleLogout = () => {
     dispatch( { type: LOGOUT } );
   };
+
   return (
     <nav className="nav-profile">
       
@@ -41,15 +58,22 @@ const MenuProfile = () => {
       </div>
       <div className={`nav-burger ${toggle ? "open" : ""}`}>
         <ul className={`menu-nav ${toggle ? "open" : ""}`}>
-          <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-              <Link className="navItems" to="/login">
-                test
+          <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/") ? "active" : ""}`}>
+              <Link onClick={handleClick} className="navItemsBurger" to="/">
+                Profil
               </Link>
           </li>
-          <li className={`menu-nav-item ${toggle ? "open" : ""} ${itemActive ? "active" : ""}`}>
-            <a href="test" >Test</a>
+          <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/meals-of-the-day") ? "active" : ""}`}>
+              <Link onClick={handleClick} className="navItemsBurger" to="/meals-of-the-day">
+                Menu de la journée
+              </Link>
           </li>
-          <button onClick={handleLogout}>Se déconnecter</button>
+          <li onMouseEnter={handleEnter} onMouseLeave={handleLeave} className={`menu-nav-item ${toggle ? "open" : ""} ${!hover && handleActive("/parameters") ? "active" : ""}`}>
+              <Link onClick={handleClick} className="navItemsBurger" to="/parameters">
+                Paramètres du compte
+              </Link>
+          </li>
+          <button className="btn btnBurger" onClick={handleLogout}>Se déconnecter</button>
         </ul>
       </div>
     </nav>

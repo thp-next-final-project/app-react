@@ -33,12 +33,19 @@
 }
 
 .btn {
-    //@include glass(0.3);
     padding: .5em 1em;
     color: $primary-color;
-    //background-color: red;
+    background-color: $primary-background;
+    border-radius: 20px;    
     font-size: 1.1em;
+    border: none;
 }
+.btn:hover {
+    color: $primary-background;
+    background-color: $primary-color;
+    border: solid 1px $primary-background;
+}
+
 .btn-error{
     pointer-events: none;
     border: solid $tercary-color 2px !important;
