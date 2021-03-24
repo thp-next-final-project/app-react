@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { UPDATE } from '../../stores/actions';
-import MessageError from '../../components/Alerts/MessageError';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
-import MessageSucess from '../../components/Alerts/MessageSucess'
+import Alerts from '../../components/Alerts';
 
 const UpdateRegister = () => {
 	const dispatch = useDispatch();
@@ -15,7 +14,7 @@ const UpdateRegister = () => {
 	const [email, setEmail] = useState(user.email);
 	const [firstname, setFirstname] = useState(user.firstname);
 	const [lastname, setLastname] = useState(user.lastname);
-	const { errors, responseData, patch, isLoading} = useFetch(true);
+	const { error, responseData:data, patch} = useFetch(true);
 
 	useEffect(() => {
 		if (!user.isLogged) {
@@ -43,12 +42,11 @@ const UpdateRegister = () => {
 
 	
 	useEffect(() => {
-		if (responseData) {
-			const data = responseData;
+		if (data) {
 			dispatch({ type: UPDATE, data});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [responseData]);	
+	}, [data]);	
 
 	const [emailError, setEmailError] = useState("");
 
@@ -140,12 +138,9 @@ const UpdateRegister = () => {
 							}`}>Modifier</button>
 						</div>   
 					</form>
-					{isLoading && <MessageSucess>
-						<p>Les paramètres ont été modifiés</p>
-						</MessageSucess>
-						}
+					{(data && !error) && <Alerts type={"success"} message={"Les paramètres ont été modifiés"}/> }
 
-					{errors && <MessageError message={errors}/>}
+					{error && <Alerts type={"error"} message={error}/>}
 				</div>
 
 			</section>

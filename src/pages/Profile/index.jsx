@@ -5,7 +5,6 @@ import Mod from '../Mod';
 import NoMatch from '../../pages/NoMatch';
 
 import { 
-	BrowserRouter as Router,
 	Switch,
 	Route } from "react-router-dom";
 
