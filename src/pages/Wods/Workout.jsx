@@ -1,5 +1,6 @@
 import {useFetch} from '../../hooks/useFetch'
 import {useEffect, useState} from 'react';
+import Work from './Work'
 import Card from './card'
 
 const Workout = (props) => {
@@ -17,6 +18,7 @@ const Workout = (props) => {
         handleApiResponse(!apiResponse);
     }
     return(
+        
         apiResponse
         &&
         <div className="workout">
