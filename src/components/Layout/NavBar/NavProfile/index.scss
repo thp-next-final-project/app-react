@@ -138,3 +138,6 @@
  margin-top: 30px; 
 }
 
+.scrolledNavbar{
+  @include glass (0.1);
+}

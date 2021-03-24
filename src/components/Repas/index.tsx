@@ -1,4 +1,4 @@
-import Ingredient from './Ingredient/';
+import Ingredient from './Ingredient';
 
 const Menu = ({meal}:any) => {
   const {title, name, calories, ingredients } = meal
@@ -18,7 +18,7 @@ const Menu = ({meal}:any) => {
   
       <div className="menu">
         <h1>{handleTitle()}</h1>
-        <h2>{name}  <span>({calories} calories)</span></h2>
+        <h2>{name}  <span>{calories} calories</span></h2>
          
       <div className="ingredients"> 
         { ingredients.map((ingredient:any, index:number) => (

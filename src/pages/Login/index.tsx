@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
-import MessageError from '../../components/MessageError';
 import { REGEX } from '../../config/config';
+import Alerts from '../../components/Alerts';
 
 
 const Login = () => {
@@ -20,7 +20,7 @@ const Login = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, responseData, token, post } = useFetch();
+	const { error, responseData, token, post } = useFetch();
 	
 	const handleLogin = (e:any) => {
 		e.preventDefault();
@@ -35,7 +35,7 @@ const Login = () => {
 	}
 
 	useEffect(() => {
-		if (responseData) {
+		if (responseData && !error) {
 			const { data }:any = responseData
 			dispatch({ type: LOGIN, data, token });
 		}
@@ -73,7 +73,7 @@ const Login = () => {
 					</div>
 					
 				</form>
-				{errors && <MessageError message={errors}/>}
+				{error && <Alerts type={"error"} message={error}/>}
 			</div>
 		</section>
 	)

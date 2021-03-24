@@ -18,8 +18,7 @@ import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
-import Wods from './pages/Wods';
-import Mod from './pages/Mod';
+import NoMatch from './pages/NoMatch';
 
 
 const App = (): JSX.Element => {
@@ -31,12 +30,13 @@ const App = (): JSX.Element => {
     fetch(`${API_URL}/api/users/${user.id}`,{ headers })
     .then((response) => response.json())
 	  .then ((data) => {
-      dispatch({ type: GET_USER, data });
+      if (data.errors) {
+        dispatch({ type: LOGOUT })
+      } else {
+        dispatch({ type: GET_USER, data });
+      }
 		})
-    .catch((error) => {
-      console.log(error)
-      dispatch({ type: LOGOUT })
-    })
+    .catch((error) => dispatch({ type: LOGOUT }))
   }
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const App = (): JSX.Element => {
   return (
       
       <Router>
-       { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
+        { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
         <Switch>
           <Route path="/" exact>
             { user.isLogged ? <Profile/> : <Home/> }
@@ -68,13 +68,8 @@ const App = (): JSX.Element => {
               <UpdateRegister/>  
             </Route> 
           }
-          { user.isLogged &&
-            <Route path="/meals-of-the-day" exact>
-              <Mod/>  
-            </Route> 
-          }
-          <Route path="/wods" exact>
-            <Wods/>
+          <Route>
+            <NoMatch />
           </Route>
         </Switch>
         <Footer/>

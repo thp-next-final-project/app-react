@@ -7,7 +7,9 @@ import {Field} from '../../../components/Fields';
 import MessageSucess from '../../../components/Alerts/MessageSucess'
 import { set } from 'js-cookie';
 
+
 const ProfileInformations = () => {
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state);
@@ -139,6 +141,7 @@ const ProfileInformations = () => {
 
 			</section>
 	)
+
 }
 
 export default ProfileInformations;

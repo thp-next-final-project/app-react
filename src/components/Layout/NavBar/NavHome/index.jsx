@@ -8,7 +8,6 @@ const MenuHome = () => {
     const [navToggle, setNavToggle] = useState(false);
 
    const handleScroll =() => {    
-        //console.log(window.scrollY);
         if (window.scrollY > navHeight){
             //console.log("scroll class")
             setNavToggle(true)

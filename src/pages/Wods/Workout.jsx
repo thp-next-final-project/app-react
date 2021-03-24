@@ -3,23 +3,38 @@ import {useEffect, useState} from 'react';
 import Card from './card'
 
 const Workout = (props) => {
-    const { errors, responseData, token, post} = useFetch(true);
+    const { responseData, post} = useFetch(true);
     const [apiResponse, handleApiResponse] = useState();
     useEffect(() => {
-        if(!responseData){
+        if(!apiResponse){
             post("/wods", {})
         }
+        console.log(responseData);
         handleApiResponse(responseData?.wod);
-    }, [responseData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [apiResponse])
+    const recall = (e) => {
+        e.preventDefault();
+        handleApiResponse(!apiResponse);
+    }
     return(
+        (apiResponse
+        &&
         <div className="workout">
+            <div>
+            pas content? 
+            </div>
+            <button onClick={recall} className="btn">Redemander des exercices</button>
             {
                 apiResponse?.map(element => (
                     <Card card={element}/>
                 ))
             }
-            {apiResponse?.length}
-        </div>
+        </div>)
+        ||
+        <>
+            chargement...
+        </>
     )
 }
 

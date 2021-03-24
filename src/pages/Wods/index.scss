@@ -1,8 +1,9 @@
 .wods-container{
-    width: 70%;
+    width: 60%;
     margin: 1em auto;
     padding: 2em 1em;
     @include glass(0.2);
+    color: $primary-background;
     .workout-selector-container{
         width: 100%;
         display: flex;
@@ -10,18 +11,39 @@
         .workout-selector{
             padding: 2em 1em;
             @include glass(0.2);
-            color: $primary-background;
         }
     }
     .line{
         width: 90%;
         margin: 1em auto;
         @include glass(0.2);
+        
         &:hover{
             transform: none;
         }
     }
-    .workout-container{
-        display: none;
+    .workout{
+        width: 90%;
+        margin: 0 auto;
+        .card{
+            width: 90%;
+            margin: 1em auto;
+            padding: 1em 2em;
+            @include glass(0.2);
+            transform: none !important;
+            .exos{
+                width: 90%;
+                margin: 1em auto;
+                .exo{
+                    margin: 1em auto;
+                    h3{
+                        margin: 0 .5em;
+                    }
+                }
+            }
+        }
+    }
+    *:not(.btn){
+        color: $primary-background;
     }
 }

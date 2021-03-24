@@ -7,22 +7,23 @@ import favorite from '../../assets/icons/favorite.png';
 import statistics from '../../assets/icons/statistics.png';
 
 
+
 const ProfileMenu = () => {
     
     return (
-        <>
+        <div className="profile-menu">
             <div className="profile-picture-container">
                 <img className="profile-picture" src={profilePicture} alt="nom de l'utilisateur"/>
             </div>
             <ul className="list-menu">    
                 <li className="items-list-menu">
                     <img className="icons-menu" src={informations} alt="icône informations"/>
-                    <Link className="link-menu" to="/profile/informations">Informations</Link>
+                    <Link className="link-menu" to="/">Informations</Link>
                 </li>  
                 
                 <li className="items-list-menu">
                     <img className="icons-menu" src={sport} alt="icône entraînement"/>
-                    <Link className="link-menu" to="">Entraînement du jour</Link>
+                    <Link className="link-menu" to="/wods">Entraînement du jour</Link>
                 </li> 
                 <li className="items-list-menu">
                     <img className="icons-menu" src={menu} alt="icône menu"/>
@@ -38,7 +39,7 @@ const ProfileMenu = () => {
                 </li> 
                 
             </ul>
-        </>
+        </div>
     )
 }
 
