@@ -35,7 +35,7 @@ const Login = () => {
 	}
 
 	useEffect(() => {
-		if (responseData) {
+		if (responseData && !error) {
 			const { data }:any = responseData
 			dispatch({ type: LOGIN, data, token });
 		}
@@ -73,11 +73,7 @@ const Login = () => {
 					</div>
 					
 				</form>
-				{error && 
-				<Alerts
-					type={"error"}
-					message={error}
-				/>}
+				{error && <Alerts type={"error"} message={error}/>}
 			</div>
 		</section>
 	)

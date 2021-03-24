@@ -42,7 +42,7 @@ const UpdateRegister = () => {
 
 	
 	useEffect(() => {
-		if (data) {
+		if (data && !error) {
 			dispatch({ type: UPDATE, data});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -52,6 +52,8 @@ export const useFetch = ( withAuth = false ) => {
 				.then((data) => {  
           if (data.errors) {
             setError(data.errors[0].detail)
+          } else if (data.error) {
+            setError(data.error)
           } else {
             setResponseData(data)
           }
@@ -71,6 +73,7 @@ export const useFetch = ( withAuth = false ) => {
       })
         .then((response) => (response.json()))
 				.then((data) => {
+          console.log(data)
           if (data.errors){
             setError(data.errors[0].detail)
           } else {
