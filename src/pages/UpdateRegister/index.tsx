@@ -12,15 +12,19 @@ const UpdateRegister = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user:any = useSelector((state) => state);
-	const [email, setEmail] = useState(user.email);
-	const [firstname, setFirstname] = useState(user.firstname);
-	const [lastname, setLastname] = useState(user.lastname);
+	console.log(user)
+	const [email, setEmail] = useState();
+	const [firstname, setFirstname] = useState();
+	const [lastname, setLastname] = useState();
 	const { errors, responseData, patch, isLoading} = useFetch(true);
 
 	useEffect(() => {
-		if (!user.isLogged) {
-			history.push(`/`);
+		if (user.firstname) {
+			setEmail(user.email)
+			setFirstname(user.firstname)
+			setLastname(user.lastname)
 		}
+
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 

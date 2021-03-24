@@ -25,6 +25,7 @@ export const useFetch = ( withAuth = false ) => {
 				.then((response) => response.json())
 				.then ((response) => {
 					setResponseData(response)
+          console.log(response)
 				})
         .catch(error => {setErrors(error)})
         .finally(() => {setIsLoading(false)})
