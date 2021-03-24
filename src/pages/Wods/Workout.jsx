@@ -19,6 +19,9 @@ const Workout = (props) => {
         e.preventDefault();
         handleApiResponse(!apiResponse);
     }
+
+
+
     return(
         
         apiResponse
@@ -26,7 +29,7 @@ const Workout = (props) => {
         
             started 
             &&
-            <Working/>
+            <Working apiResponse={apiResponse}/>
             ||
             <Work apiResponse={apiResponse} recall={recall} getStarted={getStarted} />
         

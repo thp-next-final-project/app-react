@@ -3,6 +3,7 @@ import Card from './card'
 
 const Work = (props) => {
     const apiResponse = props.apiResponse;
+    //console.log(apiResponse)
     return(
 
         <div className="workout">
