@@ -11,7 +11,6 @@ const Wods = () => {
             </div>
             <div className="line"></div>
             <Workout/>
-            <button className="btn">C'est parti !</button>
         </div>
     )
 }

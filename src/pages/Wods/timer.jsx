@@ -5,15 +5,18 @@ import { useEffect } from "react";
 const TimeCount = (props) => {
     
 
-    useEffect(() => {        
-        timeFlow()
-      }, [props.time && false]);
-    
-    const timeFlow = () => {
-        setTimeout(function(){
-            props.setTime(props.time-1);
+    useEffect(() => {
+
+        let interval = null;
+        if (props.play) {
+        interval = setInterval(() => {
+            props.setTime(props.time - 1);
         }, 1000);
-    }
+        } else if (!props.play) {
+        clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [props.play, props.time]);
 
     return (
         <div>{props.time}</div>

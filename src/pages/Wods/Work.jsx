@@ -1,13 +1,25 @@
-import {useState} from 'react';
-import TimeCount from './timer';
 
-const Work = () => {
-    const [time, setTime] = useState(50);
+import Card from './card'
 
+const Work = (props) => {
+    const apiResponse = props.apiResponse;
     return(
-        <>
-            <TimeCount time={time} setTime={setTime}/>
-        </>
+
+        <div className="workout">
+            
+            <div>
+            pas content? 
+            </div>
+            <button onClick={props.recall} className="btn">Redemander des exercices</button>
+            
+            {
+                apiResponse?.map(element => (
+                    <Card card={element}/>
+                ))
+            }
+            <button onClick={()=>{props.getStarted(true)}} className="btn"> ze parti </button>
+        </div>
+    
     )
 }
 
