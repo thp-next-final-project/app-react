@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
-import MessageError from '../../components/MessageError';
+import MessageError from '../../components/Alerts/MessageError';
 import { REGEX } from '../../config/config';
 import classnames from 'classnames';
 
@@ -16,12 +16,12 @@ const Login = () => {
 	
 	useEffect(() => {
 		if (user.isLogged) {
-			history.push(`/profile`);
+			history.push(`/`);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, data, token, post } = useFetch();
+	const { errors, responseData, token, post } = useFetch();
 	
 	const handleLogin = (e:any) => {
 		e.preventDefault();
@@ -36,12 +36,17 @@ const Login = () => {
 	}
 
 	useEffect(() => {
-		if (data) {
+		if (responseData) {
+			const { data }:any = responseData
 			dispatch({ type: LOGIN, data, token });
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
+<<<<<<< HEAD
 	}, [data]);
 
+=======
+	}, [responseData]);
+>>>>>>> development
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
@@ -55,24 +60,37 @@ const Login = () => {
 
 	return(
 		<section className="signup-form ">
-			<h2>Login</h2>
-			<form onSubmit={handleLogin}>
-				<div className="form-container">
-					<div className="half">
-						<Field label="Email" name="email" value={email} change={emailUpdate} error={emailError}/>
+			<div className="signup-container">
+				<h2>Connexion</h2>
+				<form onSubmit={handleLogin}>
+					<div className="form-container">
+						<div className="half">
+							<Field label="Email" name="email" value={email} change={emailUpdate} error={emailError}/>
+						</div>
 					</div>
-				</div>
-				<div className="form-container">
-					<div className="half">
-						<Field label="Password" password name="password"/>
-					</div>
+					<div className="form-container">
+						<div className="half">
+							<Field label="Password" password name="password"/>
+						</div>
 
+<<<<<<< HEAD
 				</div>
 				<div className="btn-container">
                         <button type="submit" className={btnClassNames} disabled={emailError}>Se connecter</button> {/* utiliser disabled */}
                     </div>
 			</form>
 			{errors && <MessageError message={errors}/>}
+=======
+					</div>
+					<div className="btn-container">
+							<button type="submit" className={`btn ${
+								emailError? "btn-error" : "" }`}>Se connecter</button>
+					</div>
+					
+				</form>
+				{errors && <MessageError message={errors}/>}
+			</div>
+>>>>>>> development
 		</section>
 	)
 }

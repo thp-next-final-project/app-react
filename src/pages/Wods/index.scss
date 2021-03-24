@@ -1,44 +1,50 @@
-.wod-container {
-    @include glass(0.1);
-    width: 70%;
-    margin: 10vh auto;
-    margin-bottom: 0;
-    .choice{
-        display: flex;
-        justify-content: space-evenly;
+
+.wods-container{
+    width: 60%;
+    margin: 1em auto;
+    padding: 2em 1em;
+    @include glass(0.2);
+    color: $primary-background;
+    .workout-selector-container{
         width: 100%;
-        .card{
+        display: flex;
+        justify-content: space-around;
+        .workout-selector{
+            padding: 2em 1em;
             @include glass(0.2);
-            color: black;
-            cursor: pointer;
-            padding: .5em 1em;
-            margin: .5em;
         }
     }
     .line{
         width: 90%;
-        margin: 1.5em auto;
-        height: 2px;
+        margin: 1em auto;
         @include glass(0.2);
-        border: none !important;
+        
         &:hover{
-            border: none !important;
-            transform: none !important;
+            transform: none;
         }
     }
-    .menu{
+    .workout{
         width: 90%;
-        margin: .5em auto;
-        margin-bottom: 1.5em;
-        .title, .sub{
-            width: 100%;
-            text-align: center;
-            h2{
-                font-weight: bolder;
-            }
-            h3{
-                font-weight: bold;
+        margin: 0 auto;
+        .card{
+            width: 90%;
+            margin: 1em auto;
+            padding: 1em 2em;
+            @include glass(0.2);
+            transform: none !important;
+            .exos{
+                width: 90%;
+                margin: 1em auto;
+                .exo{
+                    margin: 1em auto;
+                    h3{
+                        margin: 0 .5em;
+                    }
+                }
             }
         }
+    }
+    *:not(.btn){
+        color: $primary-background;
     }
 }

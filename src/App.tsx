@@ -5,63 +5,93 @@ import {
   Route } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useFetch } from './hooks/useFetch';
-import Cookies from 'js-cookie';
 
-import { COOKIE_ID } from './config/config';
-import { GET_USER } from './stores/actions';
+import { API_URL } from './config/config';
+import { GET_USER, LOGOUT } from './stores/actions';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
-import Navbar from './components/Layout/NavBar';
+import MenuProfile from './components/Layout/NavBar/NavProfile/index';
+import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
+<<<<<<< HEAD
 import {Wods} from './pages/Wods';
+=======
+import ProfileInformations from './pages/Profile/Informations';
+import UpdateRegister from './pages/UpdateRegister';
+import Wods from './pages/Wods';
+import NoMatch from './pages/NoMatch';
+
+>>>>>>> development
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
-  const { data, get } = useFetch(true);
-	const dispatch = useDispatch();
-	
-  const autoLogin = (id?:string) => {
-    get(`api/users/${id}`);
+  const { headers } = useFetch(true);
+  const dispatch = useDispatch();
+
+	const getUser = () => {
+    fetch(`${API_URL}/api/users/${user.id}`,{ headers })
+    .then((response) => response.json())
+	  .then ((data) => {
+      dispatch({ type: GET_USER, data });
+		})
+    .catch((error) => {
+      console.log(error)
+      dispatch({ type: LOGOUT })
+    })
   }
 
+  console.log(user.isLogged)
+
   useEffect(() => {
-    const id = Cookies.get(COOKIE_ID);
-		if (!user.isLogged && id) {
-			autoLogin(id);
-      console.log(data);
-		}
-    if (!user.isLogged && id && data) {
-      dispatch({ type: GET_USER, data });
-    }
+    if (user.id) {
+      getUser()
+    } 
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user, data])
+	}, [])
 
   return (
       
       <Router>
-       <Navbar/>
+       { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
         <Switch>
-          <Route path="/" exact>
-            <Home/>
-          </Route>
+          
           <Route path="/login" exact>
             <Login/>
           </Route>
           <Route path="/signup" exact>
             <Register/>
           </Route>
-          <Route path="/profile" exact>
-            <Profile/>
+          
+          <Route path="/informations" exact>
+            { user.isLogged ? <ProfileInformations/> : <Home/> }
           </Route>
+          { user.isLogged &&
+            <Route path="/parameters" exact>
+              <UpdateRegister/>  
+            </Route> 
+          }
+                 
+          <Route path="/" >
+            { user.isLogged ? <Profile/> : <Home/> }
+          </Route>
+
+          <Route>
+            <NoMatch />
+          </Route>
+<<<<<<< HEAD
           <Route path="/train" exact>
             <Wods/>
           </Route>
           <Route path="/train/progress/:section?">
             <Wods/>
           </Route>
+=======
+          
+          
+>>>>>>> development
         </Switch>
         <Footer/>
       </Router>      
