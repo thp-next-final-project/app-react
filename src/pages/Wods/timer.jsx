@@ -10,7 +10,7 @@ const TimeCount = (props) => {
         let interval = null;
         if (props.play) {
         interval = setInterval(() => {
-            props.setTime(props.time - 1);
+            props.setTime(props.time + 1);
         }, 1000);
         } else if (!props.play) {
         clearInterval(interval);
@@ -19,7 +19,7 @@ const TimeCount = (props) => {
     }, [props.play, props.time]);
 
     return (
-        <div>{props.time}</div>
+        <span>{props.time}</span>
     )
 };
 

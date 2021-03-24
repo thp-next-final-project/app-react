@@ -6,19 +6,15 @@ const Work = (props) => {
     //console.log(apiResponse)
     return(
 
-        <div className="workout">
-            
-            <div>
-            pas content? 
-            </div>
-            <button onClick={props.recall} className="btn">Redemander des exercices</button>
+        <div className="workout">        
+            <button onClick={props.recall} className="btn">Demander d'autres exercices</button>
             
             {
                 apiResponse?.map(element => (
                     <Card card={element}/>
                 ))
             }
-            <button onClick={()=>{props.getStarted(true)}} className="btn"> ze parti </button>
+            <button onClick={()=>{props.getStarted(true)}} className="btn">Go commencer l'entraînement !</button>
         </div>
     
     )
