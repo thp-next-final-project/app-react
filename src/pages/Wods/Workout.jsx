@@ -7,12 +7,13 @@ const Workout = (props) => {
     const { errors, responseData, isLoading, token, post} = useFetch(true);
     const [apiResponse, handleApiResponse] = useState();
     useEffect(() => {
-        if(!apiResponse){
+        if(!responseData || !apiResponse){
             post("/wods", {})
         }
-        console.log(responseData);
         handleApiResponse(responseData?.wod);
-    }, [apiResponse])
+        console.log(responseData);
+
+    }, [responseData])
     const recall = (e) => {
         e.preventDefault();
         handleApiResponse(!apiResponse);
@@ -22,16 +23,20 @@ const Workout = (props) => {
         apiResponse
         &&
         <div className="workout">
+            
             <div>
             pas content? 
             </div>
             <button onClick={recall} className="btn">Redemander des exercices</button>
+            <Work/>
             {
                 apiResponse?.map(element => (
                     <Card card={element}/>
                 ))
             }
+            
         </div>
+    
         ||
         <>
             chargement...

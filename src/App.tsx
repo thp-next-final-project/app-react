@@ -16,15 +16,11 @@ import Profile from './pages/Profile';
 import MenuProfile from './components/Layout/NavBar/NavProfile/index';
 import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
-<<<<<<< HEAD
-import {Wods} from './pages/Wods';
-=======
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
 import Wods from './pages/Wods';
 import NoMatch from './pages/NoMatch';
 
->>>>>>> development
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
@@ -80,18 +76,8 @@ const App = (): JSX.Element => {
 
           <Route>
             <NoMatch />
-          </Route>
-<<<<<<< HEAD
-          <Route path="/train" exact>
-            <Wods/>
-          </Route>
-          <Route path="/train/progress/:section?">
-            <Wods/>
-          </Route>
-=======
+          </Route>        
           
-          
->>>>>>> development
         </Switch>
         <Footer/>
       </Router>      

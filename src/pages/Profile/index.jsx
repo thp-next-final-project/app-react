@@ -27,6 +27,13 @@ const Profile = () => {
 
 				<Route path="/parameters" component={ProfileInformations} ></Route>
 
+				<Route path="/train" exact>
+					<Wods/>
+				</Route>
+				<Route path="/train/progress/:section?">
+					<Wods/>
+				</Route>
+
 				<Route>
 					<NoMatch />
 				</Route> 			

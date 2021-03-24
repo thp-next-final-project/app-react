@@ -41,12 +41,7 @@ const Login = () => {
 			dispatch({ type: LOGIN, data, token });
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-<<<<<<< HEAD
-	}, [data]);
-
-=======
 	}, [responseData]);
->>>>>>> development
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
@@ -73,14 +68,6 @@ const Login = () => {
 							<Field label="Password" password name="password"/>
 						</div>
 
-<<<<<<< HEAD
-				</div>
-				<div className="btn-container">
-                        <button type="submit" className={btnClassNames} disabled={emailError}>Se connecter</button> {/* utiliser disabled */}
-                    </div>
-			</form>
-			{errors && <MessageError message={errors}/>}
-=======
 					</div>
 					<div className="btn-container">
 							<button type="submit" className={`btn ${
@@ -90,7 +77,6 @@ const Login = () => {
 				</form>
 				{errors && <MessageError message={errors}/>}
 			</div>
->>>>>>> development
 		</section>
 	)
 }

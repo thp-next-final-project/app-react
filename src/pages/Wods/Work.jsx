@@ -1,12 +1,12 @@
 import {useState} from 'react';
-import Timer from './timer';
+import TimeCount from './timer';
 
 const Work = () => {
-    const [time, updateTime] = useState(50);
-    Timer.new(updateTime, time);
+    const [time, setTime] = useState(50);
+
     return(
         <>
-        {time}
+            <TimeCount time={time} setTime={setTime}/>
         </>
     )
 }
