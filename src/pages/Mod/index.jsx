@@ -18,7 +18,8 @@ const Wod = () => {
       { (!Mod && isLoading) && <p>2 sec ça charge</p>}
       { Mod && 
       <div className="menu-of-the-day"> 
-        <p>Mon objectif de calorie pour la journée : {Mod.calories} calories</p> 
+      <h1>Menus du jour</h1>
+        <p>Objectif de la journée : {Mod.calories} calories</p> 
           { Mod.meals.map((meal, index) => (
             <Menu
                 meal={meal}

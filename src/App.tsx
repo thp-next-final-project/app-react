@@ -5,7 +5,6 @@ import {
   Route } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useFetch } from './hooks/useFetch';
-
 import { API_URL } from './config/config';
 import { GET_USER, LOGOUT } from './stores/actions';
 
@@ -71,6 +70,7 @@ const App = (): JSX.Element => {
           <Route>
             <NoMatch />
           </Route>
+
         </Switch>
         <Footer/>
       </Router>      
@@ -80,3 +80,9 @@ const App = (): JSX.Element => {
 };
 
 export default App;
+
+
+/*
+entrainement du jour !
+
+*/

@@ -2,18 +2,10 @@
   transition: all 0.5s ease-in-out;
 }
 
-.nav-profile{
-  display: fixed;
-  flex-direction: row;
-  height: 10vh;
-  width: 100vw;
-}
-
 .menu-btn {
   position: absolute;
   z-index: 1;
   right: 2rem;
-  z-index: 3;
   top: 2rem;
   height: 20px;
   width: 28px;
@@ -51,12 +43,13 @@
       background: transparent;
       &::before {
         transform: rotate(45deg) translate(5px, 8px);
-        background-color: $primary-background;
+        background-color: red;
+        background-color: red;
       }
       &::after {
         width: 28px;
         transform: rotate(-45deg) translate(3px, -7px);
-        background-color: $primary-background;
+        background-color: red;
       }
     }
   }
@@ -67,16 +60,13 @@
   top: 0;
   left: 0;
   width: 100vw;
-  opacity: 0.7;
-  z-index: 2;
+  opacity: 0.98;
   visibility: hidden;
   &.open {
     visibility: visible;
   }
   .menu-nav {
     margin-top: 0;
-    margin-left: 0;
-    z-index: 4;
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -99,19 +89,20 @@
         transform: translateX(0);
       }
       &.active > a {
-        color : $primary-color;
+        color: $secondary-color;
       }
     }
 
     &-link {
       display: inline-block;
       font-size: 2rem;
-      z-index: 3;
       text-transform: uppercase;
       padding: 2rem 0;
       font-weight: 300;
       @include transition-ease;
-      
+      &:hover {
+        color: $secondary-color;
+      }
     }
   }
 }
@@ -121,23 +112,3 @@
   }
 }
 
-.navItemsBurger{
-  position: relative;
-  color: $primary-background;
-  text-decoration: none;
-  line-height: 80px;
-  font-size: 30px;
-  text-transform: uppercase;
-  &:hover {
-    text-decoration: underline;
-    color : $primary-color;
-  }
-}
-
-.btnBurger{
- margin-top: 30px; 
-}
-
-.scrolledNavbar{
-  @include glass (0.1);
-}

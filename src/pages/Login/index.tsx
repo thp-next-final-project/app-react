@@ -5,6 +5,7 @@ import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
+import classnames from 'classnames';
 import Alerts from '../../components/Alerts';
 
 
@@ -42,15 +43,16 @@ const Login = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [responseData]);
 	const [email, setEmail] = useState("");
-	const [emailError, setEmailError] = useState("");
+	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
 		setEmail(e.target.value);
-		if(!e.target.value.match(REGEX)){
-			setEmailError("Veuillez renseigner un e-mail valide.");
-		} else {
-			setEmailError("");
-		}
+		setEmailError(!e.target.value.match(REGEX));
 	}
+
+	const btnClassNames = classnames("btn", {
+		"btn-error" : emailError
+	});
+
 	return(
 		<section className="signup-form ">
 			<div className="signup-container">
