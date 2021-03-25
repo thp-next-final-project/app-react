@@ -83,7 +83,19 @@ export const useFetch = ( withAuth = false ) => {
         .catch(errors => setError(errors))
         .finally(() => setIsLoading(false))
   };
-
+  
+  const destroy = (path:string) => {
+    setIsLoading(true);
+    setError(null);
+    fetch( API_URL + path,
+      {
+        method: 'DELETE',
+        headers,
+      })
+    .then((response) => response.json())
+    .catch(errors => setError(errors))
+    .finally(() => {setIsLoading(false)})
+  };
   return {
     isLoading,
     error,
@@ -92,6 +104,7 @@ export const useFetch = ( withAuth = false ) => {
     headers,
     get,
     post,
-    patch
+    patch,
+    destroy
   };
 }

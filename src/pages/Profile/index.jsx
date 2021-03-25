@@ -7,6 +7,7 @@ import NoMatch from '../../pages/NoMatch';
 import { 
 	Switch,
 	Route } from "react-router-dom";
+import MyEquipement from '../MyEquipement';
 
 
 const Profile = () => {
@@ -25,7 +26,9 @@ const Profile = () => {
 				<Route path="/wods" component={Wods} ></Route>
 
 				<Route path="/parameters" component={ProfileInformations} ></Route>
-
+				
+        <Route path="/my-equipement" component={MyEquipement}/>
+          
 				<Route>
 					<NoMatch />
 				</Route> 			

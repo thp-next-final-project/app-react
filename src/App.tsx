@@ -51,9 +51,6 @@ const App = (): JSX.Element => {
       <Router>
         { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
         <Switch>
-          <Route path="/" exact>
-            { user.isLogged ? <Profile/> : <Home/> }
-          </Route>
           <Route path="/login" exact>
             <Login/>
           </Route>
@@ -68,6 +65,9 @@ const App = (): JSX.Element => {
               <UpdateRegister/>  
             </Route> 
           }
+          <Route path="/">
+            { user.isLogged ? <Profile/> : <Home/> }
+          </Route>
           <Route>
             <NoMatch />
           </Route>
