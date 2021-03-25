@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { UPDATE } from '../../stores/actions';
 import {Field} from '../../components/Fields';
@@ -9,13 +8,12 @@ import Alerts from '../../components/Alerts';
 
 const UpdateRegister = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
 	const user:any = useSelector((state) => state);
 	console.log(user)
 	const [email, setEmail] = useState();
 	const [firstname, setFirstname] = useState();
 	const [lastname, setLastname] = useState();
-	const { error, responseData:data, patch, isLoading} = useFetch(true);
+	const { error, responseData:data, patch} = useFetch(true);
 
 	useEffect(() => {
 		if (user.firstname) {
