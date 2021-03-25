@@ -5,9 +5,9 @@ import Mod from '../Mod';
 import NoMatch from '../../pages/NoMatch';
 
 import { 
-	BrowserRouter as Router,
 	Switch,
 	Route } from "react-router-dom";
+import MyEquipement from '../MyEquipement';
 
 
 const Profile = () => {
@@ -34,6 +34,9 @@ const Profile = () => {
 					<Wods/>
 				</Route>
 
+				
+        <Route path="/my-equipement" component={MyEquipement}/>
+          
 				<Route>
 					<NoMatch />
 				</Route> 			

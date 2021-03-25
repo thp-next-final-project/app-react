@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
-import MessageError from '../../components/Alerts/MessageError';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
 import { Link } from "react-router-dom";
+import Alerts from '../../components/Alerts';
 
 const Register = () => {
 	const user:any = useSelector((state) => state);
@@ -20,12 +20,11 @@ const Register = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, responseData , token, post} = useFetch();
+	const { error, responseData , token, post} = useFetch();
 
 
 	const handleSubmit = (e:any) => {
 		e.preventDefault();	
-		console.log(e.target)
 		const createUser = {
 			user: {
 				firstname: e.target.firstname.value,
@@ -34,17 +33,18 @@ const Register = () => {
 				password: e.target.password.value,
 			}
 		};
-
 		post('/api/signup', createUser);
 	}
 	
 	useEffect(() => {
-		if (responseData) {
+		console.log("les erreurs", error)
+		if (responseData && !error) {
 			const { data }:any = responseData;
 			dispatch({ type: LOGIN, data, token});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [responseData]);	
+	
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState("");
 	const emailUpdate = (e:any) => {
@@ -63,9 +63,7 @@ const Register = () => {
 			setPasswordError("Veuillez renseigner un mot de passe d'au moins 6 caractères");
 		} else {
 			setPasswordError("");
-		}
-		console.log(e.target.value);
-		
+		}		
 	}
 	const [passwordConfirmation, setPasswordConfirmation] = useState("");
 	const [passwordConfirmationError, setPasswordConfirmationError] = useState("");
@@ -120,7 +118,7 @@ const Register = () => {
 							</Link>
 						</div>     
 					</form>
-					{errors && <MessageError message={errors}/>}
+					{error && <Alerts type={"error"} message={error}/>}
 				</div>
 
 			</section>

@@ -1,6 +1,5 @@
 import {useState} from 'react';
 import TimeCount from './timer';
-import Work from './Work';
 import Cards from './cards';
 
 const Working = (props) => {
@@ -24,6 +23,7 @@ const Working = (props) => {
         setTime(value);
         updateExo(Math.floor(value/15));
     }
+    console.log(Step)
     return(
         <div className="workout">
             <div className="top-menu">
@@ -46,16 +46,15 @@ const Working = (props) => {
                 <div className="timer-tim"><TimeCount time={time} setTime={handleTimerChange} play={play}/><span> secondes  </span></div>
                 <button className="btn" onClick={playToggle}>
                     {
-                        play
+                        (play
                         &&
-                        "pause"
+                        "pause")
                         ||
                         "play"
                     }
                 </button>
             </div> 
-            {
-            
+            {            
                     <Cards card={Step} exo={currentExo}/>
             }
             <button className="btn" onClick={switchStep}>Passer à la suite de l'entrainement</button>

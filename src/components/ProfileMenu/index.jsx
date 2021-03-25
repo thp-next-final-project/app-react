@@ -15,29 +15,37 @@ const ProfileMenu = () => {
             <div className="profile-picture-container">
                 <img className="profile-picture" src={profilePicture} alt="nom de l'utilisateur"/>
             </div>
-            <ul className="list-menu">    
-                <li className="items-list-menu">
-                    <img className="icons-menu" src={informations} alt="icône informations"/>
-                    <Link className="link-menu" to="/">Informations</Link>
-                </li>  
-                
-                <li className="items-list-menu">
-                    <img className="icons-menu" src={sport} alt="icône entraînement"/>
-                    <Link className="link-menu" to="/wods">Entraînement du jour</Link>
-                </li> 
-                <li className="items-list-menu">
-                    <img className="icons-menu" src={menu} alt="icône menu"/>
-                    <Link className="link-menu" to="/meals-of-the-day">Menus du jour</Link>
-                </li> 
-                <li className="items-list-menu">
-                    <img className="icons-menu" src={favorite} alt="icône favoris"/>
-                    <Link className="link-menu" to="">Favoris</Link>
-                </li> 
-                <li className="items-list-menu">
-                    <img className="icons-menu" src={statistics} alt="icône progression"/>
-                    <Link className="link-menu" to="">Progression</Link>
-                </li> 
-                
+            <ul className="list-menu"> 
+                <Link className="link-menu" to="/wods">
+                    <li className="items-list-menu">
+                        <img className="icons-menu" src={sport} alt="icône entraînement"/>
+                        Entraînement du jour
+                    </li> 
+                </Link>
+                <Link className="link-menu" to="/meals-of-the-day">
+                    <li className="items-list-menu">
+                        <img className="icons-menu" src={menu} alt="icône menu"/>
+                        Menus du jour
+                    </li> 
+                </Link>
+                <Link className="link-menu" to="">
+                    <li className="items-list-menu">
+                        <img className="icons-menu" src={statistics} alt="icône progression"/>
+                        Progression
+                    </li> 
+                </Link>
+                <Link className="link-menu" to="/">   
+                    <li className="items-list-menu">
+                        <img className="icons-menu" src={informations} alt="icône informations"/>
+                        Informations
+                    </li>  
+                </Link>
+                <Link className="link-menu" to="/my-equipement">
+                    <li className="items-list-menu">
+                        <img className="icons-menu" src={favorite} alt="icône favoris"/>
+                        Mon équipement
+                    </li> 
+                </Link>
             </ul>
         </div>
     )
