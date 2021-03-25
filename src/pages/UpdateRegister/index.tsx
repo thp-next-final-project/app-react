@@ -15,7 +15,7 @@ const UpdateRegister = () => {
 	const [email, setEmail] = useState();
 	const [firstname, setFirstname] = useState();
 	const [lastname, setLastname] = useState();
-	const { errors, responseData, patch, isLoading} = useFetch(true);
+	const { error, responseData:data, patch, isLoading} = useFetch(true);
 
 	useEffect(() => {
 		if (user.firstname) {

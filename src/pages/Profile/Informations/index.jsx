@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../../hooks/useFetch';
 import { UPDATE } from '../../../stores/actions';
 import {Field} from '../../../components/Fields';
-import MessageSucess from '../../../components/Alerts/MessageSucess'
+import Alerts from '../../../components/Alerts'
 import { set } from 'js-cookie';
 
 
@@ -132,9 +132,8 @@ const ProfileInformations = () => {
 							<button type="submit" className="btn">Modifier</button>
 						</div>   
 					</form>
-					{isLoading && <MessageSucess>
-						<p>Les paramètres ont été modifiés</p>
-						</MessageSucess>
+					{isLoading && <Alerts type={"success"} message={"Les paramètres ont été modifiés"}/>
+					
 						}
 
 				</div>
