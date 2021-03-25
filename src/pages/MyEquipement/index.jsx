@@ -1,5 +1,6 @@
 import { useEffect, useReducer } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import Alerts from "../../components/Alerts";
 import { useFetch } from '../../hooks/useFetch';
 
 const getItemStyle = (draggableStyle) => ({
@@ -34,6 +35,7 @@ const  MyEquipement = () => {
 
   const {get, patch, destroy, responseData:dataUserEquipement, error:errorUser} = useFetch(true);
   const {get:getall, responseData:dataAllEquipement, error:errorAll} = useFetch(true);
+
 
   useEffect(() => {
     get('/my_equipements') 
@@ -87,6 +89,8 @@ const  MyEquipement = () => {
 
   return (
     <div>
+      {/* {(hasBeenPatch && !errorUser) && <Alerts type={"success"} message={"L'élément a été ajouté à votre équipement  vous pouvez accéder aux exercices l'incluant"}/> }
+      {(hasBeenDestroy && !errorAll) && <Alerts type={"warning"} message="L'élément a été retiré de vos équipement vous ne pourrez plus accéder aux exercices l'incluant"/>} */}
       <div className="dnd-equipements">
         <DragDropContext onDragEnd={onDragEnd}>
           <div>
@@ -104,7 +108,7 @@ const  MyEquipement = () => {
                       draggableId={item.id.toString()}
                       index={index}
                     >
-                      {(provided, snapshot) => (
+                      {(provided) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
@@ -139,7 +143,7 @@ const  MyEquipement = () => {
                       draggableId={item.id.toString()}
                       index={index}
                     >
-                      {(provided, snapshot) => (
+                      {(provided) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
