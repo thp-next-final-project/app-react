@@ -5,7 +5,6 @@ import {
   Route } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useFetch } from './hooks/useFetch';
-
 import { API_URL } from './config/config';
 import { GET_USER, LOGOUT } from './stores/actions';
 
@@ -16,15 +15,10 @@ import Profile from './pages/Profile';
 import MenuProfile from './components/Layout/NavBar/NavProfile/index';
 import MenuHome from './components/Layout/NavBar/NavHome';
 import { Footer } from './components/Layout/Footer';
-<<<<<<< HEAD
-import {Wods} from './pages/Wods';
-=======
 import ProfileInformations from './pages/Profile/Informations';
 import UpdateRegister from './pages/UpdateRegister';
-import Wods from './pages/Wods';
 import NoMatch from './pages/NoMatch';
 
->>>>>>> development
 
 const App = (): JSX.Element => {
   const user:any = useSelector((state) => state);
@@ -35,15 +29,14 @@ const App = (): JSX.Element => {
     fetch(`${API_URL}/api/users/${user.id}`,{ headers })
     .then((response) => response.json())
 	  .then ((data) => {
-      dispatch({ type: GET_USER, data });
+      if (data.errors) {
+        dispatch({ type: LOGOUT })
+      } else {
+        dispatch({ type: GET_USER, data });
+      }
 		})
-    .catch((error) => {
-      console.log(error)
-      dispatch({ type: LOGOUT })
-    })
+    .catch((error) => dispatch({ type: LOGOUT }))
   }
-
-  console.log(user.isLogged)
 
   useEffect(() => {
     if (user.id) {
@@ -55,16 +48,14 @@ const App = (): JSX.Element => {
   return (
       
       <Router>
-       { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
+        { user.isLogged ?  <MenuProfile/> : <MenuHome/> }
         <Switch>
-          
           <Route path="/login" exact>
             <Login/>
           </Route>
           <Route path="/signup" exact>
             <Register/>
           </Route>
-          
           <Route path="/informations" exact>
             { user.isLogged ? <ProfileInformations/> : <Home/> }
           </Route>
@@ -73,25 +64,13 @@ const App = (): JSX.Element => {
               <UpdateRegister/>  
             </Route> 
           }
-                 
-          <Route path="/" >
+          <Route path="/">
             { user.isLogged ? <Profile/> : <Home/> }
           </Route>
-
           <Route>
             <NoMatch />
           </Route>
-<<<<<<< HEAD
-          <Route path="/train" exact>
-            <Wods/>
-          </Route>
-          <Route path="/train/progress/:section?">
-            <Wods/>
-          </Route>
-=======
-          
-          
->>>>>>> development
+
         </Switch>
         <Footer/>
       </Router>      

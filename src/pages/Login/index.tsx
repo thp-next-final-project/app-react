@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
-import MessageError from '../../components/Alerts/MessageError';
 import { REGEX } from '../../config/config';
 import classnames from 'classnames';
+import Alerts from '../../components/Alerts';
 
 
 const Login = () => {
@@ -21,7 +21,7 @@ const Login = () => {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, responseData, token, post } = useFetch();
+	const { error, responseData, token, post } = useFetch();
 	
 	const handleLogin = (e:any) => {
 		e.preventDefault();
@@ -36,17 +36,12 @@ const Login = () => {
 	}
 
 	useEffect(() => {
-		if (responseData) {
+		if (responseData && !error) {
 			const { data }:any = responseData
 			dispatch({ type: LOGIN, data, token });
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-<<<<<<< HEAD
-	}, [data]);
-
-=======
 	}, [responseData]);
->>>>>>> development
 	const [email, setEmail] = useState("");
 	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
@@ -73,14 +68,6 @@ const Login = () => {
 							<Field label="Password" password name="password"/>
 						</div>
 
-<<<<<<< HEAD
-				</div>
-				<div className="btn-container">
-                        <button type="submit" className={btnClassNames} disabled={emailError}>Se connecter</button> {/* utiliser disabled */}
-                    </div>
-			</form>
-			{errors && <MessageError message={errors}/>}
-=======
 					</div>
 					<div className="btn-container">
 							<button type="submit" className={`btn ${
@@ -88,9 +75,8 @@ const Login = () => {
 					</div>
 					
 				</form>
-				{errors && <MessageError message={errors}/>}
+				{error && <Alerts type={"error"} message={error}/>}
 			</div>
->>>>>>> development
 		</section>
 	)
 }

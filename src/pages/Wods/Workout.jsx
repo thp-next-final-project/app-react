@@ -4,7 +4,7 @@ import Work from './Work'
 import Card from './card'
 
 const Workout = (props) => {
-    const { errors, responseData, isLoading, token, post} = useFetch(true);
+    const { responseData, post} = useFetch(true);
     const [apiResponse, handleApiResponse] = useState();
     useEffect(() => {
         if(!apiResponse){
@@ -12,6 +12,7 @@ const Workout = (props) => {
         }
         console.log(responseData);
         handleApiResponse(responseData?.wod);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [apiResponse])
     const recall = (e) => {
         e.preventDefault();
@@ -20,6 +21,7 @@ const Workout = (props) => {
     return(
         
         apiResponse
+        (apiResponse
         &&
         <div className="workout">
             <div>
@@ -31,7 +33,7 @@ const Workout = (props) => {
                     <Card card={element}/>
                 ))
             }
-        </div>
+        </div>)
         ||
         <>
             chargement...
