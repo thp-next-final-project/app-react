@@ -6,6 +6,9 @@ import { UPDATE } from '../../../stores/actions';
 import {Field} from '../../../components/Fields';
 import Alerts from '../../../components/Alerts'
 import { set } from 'js-cookie';
+import Select from 'react-select';
+
+
 
 
 const ProfileInformations = () => {
@@ -55,9 +58,9 @@ const ProfileInformations = () => {
 				age: e.target.age.value,
 				weight: e.target.weight.value,
 				height: e.target.height.value,
-				objectif: e.target.objectif.value,
-				sexe: e.target.objectif.value,
-				activity: e.target.objectif.value
+				objectif: objectif,
+				sexe: sexe,
+				activity: activity
 			}
 		};
 
@@ -84,7 +87,9 @@ const ProfileInformations = () => {
 			case "height" : 
 				setHeight(e.target.value);
 				break;
+				
 			case "objectif" : 
+			console.log(e.target.value)
 				setObjectif(e.target.value);
 				break;
 			case "activity" : 
@@ -94,11 +99,64 @@ const ProfileInformations = () => {
 		}
 	
 	};
+	const choiceobjectif = [
+		{
+		  value: "slim",
+		  label: "Perdre de poids"
+		},
+		{
+			value: "maintain",
+			label: "Maintenir ma forme"
+		  },
+		  {
+			value: "build",
+			label: "Me muscler"
+		  },
+	];
+
+		
+		
+	const handleChangeObjectif = e => {
+		setObjectif(e.value);
+		
+	}
+	
+	const choicesexe = [
+		{
+			value: "man",
+			label: "Homme"
+		},
+		{
+			value: "woman",
+			label: "Femme"
+		},
+	];
+	const handleChangeSexe = e => {
+		setSexe(e.value);
+	}
+
+	const choiceactivity = [
+		{
+			value: "sedentary",
+			label: "Sédentaire"
+		},
+		{
+			value: "active",
+			label: "Actif"
+		},
+		{
+			value: "athletic",
+			label: "Athletique"
+		},
+	];
+	const handleChangeActivity = e => {
+		setActivity(e.value);
+	}
 
 	
 	return (
-			<section className="signup-form">
-				<div className="signup-container">
+			<section className="update-informations-form">
+				<div className="update-informations-container">
 					<h2>Modifier mes paramètres</h2>
 					<form onSubmit={handleSubmit} onChange={handleOnChange}>
 						<div className="form-container">
@@ -118,12 +176,41 @@ const ProfileInformations = () => {
 						</div>
 						<div className="form-container">
 							<div className="full">
-								<Field label="Activité" name="activity" value={activity} />
+								<label>
+									Etes-vous plutôt... ?
+									<Select
+										placeholder="Select Option"
+										value={choiceactivity.find(obj => obj.value === activity)} // set selected value
+										options={choiceactivity} // set list of the data
+										onChange={handleChangeActivity} // assign onChange function
+									/>
+								</label>
 							</div>
 						</div>
 						<div className="form-container">
 							<div className="full">
-								<Field label="Objectif" name="objectif" value={objectif} />
+								<label>
+									Vous êtes... ?
+									<Select
+										placeholder="Select Option"
+										value={choicesexe.find(obj => obj.value === sexe)} // set selected value
+										options={choicesexe} // set list of the data
+										onChange={handleChangeSexe} // assign onChange function
+									/>
+								</label>
+							</div>
+						</div>
+						<div className="form-container">
+							<div className="full">
+								<label>
+									Quel est votre objectif ?
+									<Select
+										placeholder="Select Option"
+										value={choiceobjectif.find(obj => obj.value === objectif)} // set selected value
+										options={choiceobjectif} // set list of the data
+										onChange={handleChangeObjectif} // assign onChange function
+									/>
+								</label>
 							</div>
 						</div>
 
