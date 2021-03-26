@@ -3,7 +3,7 @@ import ProfileInformations from './Informations';
 import Wods from '../Wods';
 import Mod from '../Mod';
 import NoMatch from '../../pages/NoMatch';
-import Progress from '../WodsProgress'
+import WodsProgress from '../WodsProgress/'
 
 import { 
 	Switch,
@@ -29,7 +29,7 @@ const Profile = () => {
 				<Route path="/parameters" component={ProfileInformations} ></Route>
 
 				<Route path="/progress">
-					<Progress/>
+					<WodsProgress/>
 				</Route>
 
 				

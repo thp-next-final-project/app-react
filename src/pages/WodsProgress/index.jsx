@@ -1,41 +1,52 @@
-import {XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries} from 'react-vis';
-import {useEffect, useState} from "react"
+import {useState, useEffect} from "react"
 import {useFetch} from "../../hooks/useFetch";
-const Progress = () => {
-    const { errors, responseData, isLoading, token, get} = useFetch(true);
-    const [weights, updateWeights] = useState();
-    const [reps, updateReps] = useState();
-    useEffect(() => {
-        get("/my_performances")
-        console.log(responseData);
+import Menu from './menu'
+import Progress from './progress'
 
-    }, [!responseData])
+const WodsProgress = () => {
+    const [exercises, updateExercises] = useState();
+    const [choice, updateChoice] = useState();
+    const [perfs, updatePerfs] = useState();
+    const [exercise, updateExercise] = useState();
+    const {responseData, get} = useFetch(true);
+    const {responseData:myPerfs, get:getPerfs} = useFetch(true);
+    const {responseData:exo, get:getExos} = useFetch(true);
+    useEffect(() => {
+        get("/exercices")
+    }, [])
+    useEffect(() => {
+        getPerfs("/my_performances")
+    }, []);
+    useEffect(() => {
+        const apiReturnTreatment = responseData?.filter((item, index) => (responseData.indexOf(item) == index))
+        console.log(apiReturnTreatment);
+        updateExercises(apiReturnTreatment);
+    }, [responseData])
+    useEffect(() => {
+        updatePerfs(myPerfs);
+        console.log("myPerfs");
+        console.log(myPerfs);
+    }, [myPerfs])
+    useEffect(() => {
+        getExos(`/exercices/${choice}`)
+    }, [choice])
+    useEffect(() => {
+        updateExercise(exo);
+        console.log(exo);
+    }, [exo])
     return(
         <div>
-            <XYPlot
-                width={300}
-                height={300}>
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
-                <LineSeries
-                    data={[
-                        {x: 1, y: 4},
-                        {x: 5, y: 2},
-                        {x: 15, y: 6}
-                    ]}/>
-
-            </XYPlot>
+            <Menu exos={exercises} update={updateChoice}/>
+            {
+                choice
+            }
+            {
+                exercise
+                &&
+                <Progress data={exercise}/>
+            }
         </div>
     )
 }
 
-export default Progress
-
-/*
-    jours en absice
-    ordonees 
-        baton : nb d'exos
-        courbe : nb de reps
-*/
+export default WodsProgress

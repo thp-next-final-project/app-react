@@ -24,18 +24,18 @@ const Workout = (props) => {
 
 
 
-    return(
+    return (
         
-        apiResponse
+        (apiResponse
         &&
         
-            (started 
+            ((started 
             &&
-            <Working apiResponse={apiResponse}/>
+            <Working apiResponse={apiResponse}/>)
             ||
             <Work apiResponse={apiResponse} recall={recall} getStarted={getStarted} />
         
-        )||
+        ))||
         <>
             chargement...
         </>

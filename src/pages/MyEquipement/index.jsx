@@ -1,163 +1,123 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import Alerts from "../../components/Alerts";
 import { useFetch } from '../../hooks/useFetch';
 
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
-
-  return result;
-};
-
-/**
- * Moves an item from one list to another list.
- */
-const move = (source, destination, droppableSource, droppableDestination) => {
-  const sourceClone = Array.from(source);
-  const destClone = Array.from(destination);
-  const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-  destClone.splice(droppableDestination.index, 0, removed);
-
-  const result = {};
-  result[droppableSource.droppableId] = sourceClone;
-  result[droppableDestination.droppableId] = destClone;
-
-  return result;
-};
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: "none",
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "grey",
-
-  // styles we need to apply on draggables
+const getItemStyle = (draggableStyle) => ({
   ...draggableStyle
 });
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
-  margin: "2rem",
-  padding: grid,
-  width: 250
-});
+
+const reducer = (previousState , payload) => {
+  const { type, value } = payload;
+  const result = [...previousState];
+  switch (type) {
+    case "add":
+      result.splice(value.index, 0, value.data);
+      return [...result]
+    case "remove":
+      return [...previousState.filter(val => val.id !== value.id)]
+    case "fill":
+      return [...value]
+    case "reorder":
+      const [ previousIndex, newIndex ] = value;
+      const [removed] = result.splice(previousIndex, 1);
+      result.splice(newIndex, 0, removed);
+      return [...result]
+    default:
+      return previousState;
+  }
+}
 
 const  MyEquipement = () => {
-  const [myEquipement, setMyEquipement] = useState([]);
-  const [allEquipement, setAllEquipement] = useState([]);
-  const [state, setState] = useState([myEquipement, allEquipement]);
   
+  const [myEquipement, setMyEquipement] = useReducer(reducer, [])  ;
+  const [allEquipement, setAllEquipement] = useReducer(reducer, [])  ;
 
   const {get, patch, destroy, responseData:dataUserEquipement, error:errorUser} = useFetch(true);
   const {get:getall, responseData:dataAllEquipement, error:errorAll} = useFetch(true);
 
-  useEffect(() => {
-    if (myEquipement.length === 0) {
-      get('/my_equipements')
-    }
-    if (allEquipement?.length !== dataAllEquipement?.length) {
-      getall('/equipements')
-    }
-    const diffAddedEquipement = state[0].filter(item1 => 
-      !myEquipement.some(item2 => (item2.id === item1.id)))
-    if (diffAddedEquipement.length === 1) {
-      console.log("add", diffAddedEquipement);
-      patch(`/my_equipements/${diffAddedEquipement[0].id}`);
-      diffAddedEquipement.pop()
-    }
-    const diffRemoveEquipement = state[1].filter(item1 => 
-      !allEquipement.some(item2 => (item2.id === item1.id)))
-    if (diffRemoveEquipement.length === 1) {
-      console.log("remove",diffRemoveEquipement);
-      destroy(`/my_equipements/${diffRemoveEquipement[0].id}`);
-      diffRemoveEquipement.pop()
-    }
 
-   
+  useEffect(() => {
+    get('/my_equipements') 
+    getall('/equipements')  
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  }, []);
 
   useEffect(()=> {
     if (dataUserEquipement && !errorUser) {
-      setMyEquipement(dataUserEquipement);
-      setState([dataUserEquipement, allEquipement]);
+      setMyEquipement({type: "fill", value: dataUserEquipement});
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataUserEquipement])
+  }, [dataUserEquipement, errorUser])
 
   useEffect(()=> {
     if (dataAllEquipement && !errorAll) {
-      setAllEquipement(dataAllEquipement);
-      setState([myEquipement, dataAllEquipement]);
+      setAllEquipement({type: "fill", value: dataAllEquipement});
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataAllEquipement])
+  }, [dataAllEquipement, errorAll])
+
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
-    // dropped outside the list
+
     if (!destination) {
       return;
     }
-    const sInd = +source.droppableId;
-    const dInd = +destination.droppableId;
 
-    if (sInd === dInd) {
-      const items = reorder(state[sInd], source.index, destination.index);
-      const newState = [...state];
-      newState[sInd] = items;
-      setState(newState);
-    } else {
-      const result = move(state[sInd], state[dInd], source, destination);
-      const newState = [...state];
-      newState[sInd] = result[sInd];
-      newState[dInd] = result[dInd];
-
-      setState(newState.filter(group => group.length));
+    const { index:indexSource, droppableId:sourceId} = source;
+    const { index:indexDestination, droppableId:destinationId} = destination;
+  
+    if (sourceId === destinationId) {
+      if ( sourceId === "my-equipement") {
+        setMyEquipement({type: "reorder", value: [indexSource, indexDestination]})  
+      } else if ( sourceId === "all-equipement") {
+        setAllEquipement({type: "reorder", value: [indexSource, indexDestination]})
+      }
+      return
+    } 
+    if (destinationId === "my-equipement") {
+      const data = allEquipement[indexSource];
+      setMyEquipement({type: "add", value: {index: indexDestination, data} });
+      setAllEquipement({type: "remove", value: data });
+      patch(`/my_equipements/${data.id}`)
+    } else if (destinationId === "all-equipement") {
+      const data = myEquipement[indexSource];
+      setAllEquipement({type: "add", value: {index: indexDestination, data} });
+      setMyEquipement({type: "remove", value: data });
+      destroy(`/my_equipements/${data.id}`)
     }
   }
 
   return (
     <div>
-      <div style={{ display: "flex"}}>
+      {/* {(hasBeenPatch && !errorUser) && <Alerts type={"success"} message={"L'élément a été ajouté à votre équipement  vous pouvez accéder aux exercices l'incluant"}/> }
+      {(hasBeenDestroy && !errorAll) && <Alerts type={"warning"} message="L'élément a été retiré de vos équipement vous ne pourrez plus accéder aux exercices l'incluant"/>} */}
+      <div className="dnd-equipements">
         <DragDropContext onDragEnd={onDragEnd}>
-        <h2>Mon équipement</h2>
-          {state.map((el, ind) => (
-            <Droppable key={ind} droppableId={`${ind}`}>
+          <div>
+            <h2>Mon équipement</h2>
+            <Droppable droppableId="my-equipement">
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
+                  className={`equipements-list ${snapshot.isDraggingOver? "on-drag" : ""}`}
                   {...provided.droppableProps}
                 >
-                  {el.map((item, index) => (
+                  {myEquipement.map((item, index) => (
                     <Draggable
                       key={item.id}
                       draggableId={item.id.toString()}
                       index={index}
                     >
-                      {(provided, snapshot) => (
+                      {(provided) => (
                         <div
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
+                          className={`equipement-item-container`}
+                          style={getItemStyle(provided.draggableProps.style)}
                         >
-                          <div
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-around"
-                            }}
-                          >
-                           <p> {item.name} {item.weight} </p>
+                          <div className="equipement-item">
+                            <p> {item.name} {item.weight === 0? "" : item.weight} </p>
                           </div>
                         </div>
                       )}
@@ -167,8 +127,42 @@ const  MyEquipement = () => {
                 </div>
               )}
             </Droppable>
-          ))}
-        <h2>Tout les équipement pour nos exercices</h2>
+            </div>
+            <div>
+            <h2>Tout les équipement pour nos exercices</h2>
+            <Droppable droppableId={"all-equipement"}>
+              {(provided, snapshot) => (
+                <div
+                  ref={provided.innerRef}
+                  className={`equipements-list ${snapshot.isDraggingOver? "on-drag" : ""}`}
+                  {...provided.droppableProps}
+                >
+                  {allEquipement.map((item, index) => (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id.toString()}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={`equipement-item-container`}
+                          style={getItemStyle(provided.draggableProps.style)}
+                        >
+                          <div className="equipement-item">
+                           <p> {item.name} {item.weight === 0? "" : item.weight} </p>
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+            </div>
         </DragDropContext>
       </div>
     </div>
