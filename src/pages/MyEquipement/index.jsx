@@ -1,7 +1,7 @@
 import { useEffect, useReducer } from "react";
+import { useFetch } from '../../hooks/useFetch';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 // import Alerts from "../../components/Alerts";
-import { useFetch } from '../../hooks/useFetch';
 
 const getItemStyle = (draggableStyle) => ({
   ...draggableStyle
@@ -30,12 +30,11 @@ const reducer = (previousState , payload) => {
 
 const  MyEquipement = () => {
   
-  const [myEquipement, setMyEquipement] = useReducer(reducer, [])  ;
-  const [allEquipement, setAllEquipement] = useReducer(reducer, [])  ;
+  const [myEquipement, setMyEquipement] = useReducer(reducer, []);
+  const [allEquipement, setAllEquipement] = useReducer(reducer, []);
 
-  const {get, patch, destroy, responseData:dataUserEquipement, error:errorUser} = useFetch(true);
+  const {get, patch, destroy, responseData:dataUserEquipement, error:errorUser, isLoading} = useFetch(true);
   const {get:getall, responseData:dataAllEquipement, error:errorAll} = useFetch(true);
-
 
   useEffect(() => {
     get('/my_equipements') 
@@ -54,7 +53,6 @@ const  MyEquipement = () => {
       setAllEquipement({type: "fill", value: dataAllEquipement});
     }
   }, [dataAllEquipement, errorAll])
-
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
@@ -76,21 +74,23 @@ const  MyEquipement = () => {
     } 
     if (destinationId === "my-equipement") {
       const data = allEquipement[indexSource];
-      setMyEquipement({type: "add", value: {index: indexDestination, data} });
+      setMyEquipement({type: "add", value: {index: indexDestination, data:data} });
       setAllEquipement({type: "remove", value: data });
+      console.log(data.id);
       patch(`/my_equipements/${data.id}`)
     } else if (destinationId === "all-equipement") {
       const data = myEquipement[indexSource];
-      setAllEquipement({type: "add", value: {index: indexDestination, data} });
+      setAllEquipement({type: "add", value: {index: indexDestination, data:data} });
       setMyEquipement({type: "remove", value: data });
+      console.log(data.id);
       destroy(`/my_equipements/${data.id}`)
     }
   }
 
   return (
     <div>
-      {/* {(hasBeenPatch && !errorUser) && <Alerts type={"success"} message={"L'élément a été ajouté à votre équipement  vous pouvez accéder aux exercices l'incluant"}/> }
-      {(hasBeenDestroy && !errorAll) && <Alerts type={"warning"} message="L'élément a été retiré de vos équipement vous ne pourrez plus accéder aux exercices l'incluant"/>} */}
+      {/* {(!errorUser) && <Alerts type={"success"} message={"L'élément a été ajouté à votre équipement  vous pouvez accéder aux exercices l'incluant"}/>}
+      {(!errorAll) && <Alerts type={"warning"} message="L'élément a été retiré de vos équipement vous ne pourrez plus accéder aux exercices l'incluant"/>} */}
       <div className="dnd-equipements">
         <DragDropContext onDragEnd={onDragEnd}>
           <div>
