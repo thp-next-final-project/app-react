@@ -1,5 +1,5 @@
 ![logotype a happy-07](https://d29md5j3ph8xfz.cloudfront.net/100_percent/upload/Content/82047/THP_logoblock_grey.png)
-
+[SportEat](https://thp-next-final-project.github.io/app-react/)
 
 # Welcome on our final group project with THE HACKING PROJECT NEXT
 
@@ -9,9 +9,9 @@ Générateur de séance de sport et de menu correspondant à l'objectif de la pe
 
 ### Developpers :
 
-- [Boris](https://github.com/DanBertrand)
-- [Bérangére](https://github.com/Queje)
-- [Bénedicte](https://github.com/Doury-Manuel)
+- [Boris](https://github.com/borisMD24)
+- [Bérangère](https://github.com/Berangereh)
+- [Bénédicte](https://github.com/benedictebcl)
 - [Quentin](https://github.com/qdtrl)
 
 ### Tools :
@@ -20,11 +20,16 @@ Générateur de séance de sport et de menu correspondant à l'objectif de la pe
 * TypeScript
 * Ruby on Rails - API
 
+### Package:
+
+* Beautiful-dnd
+* 
+
 ### Gems :
 
 * [Devise](https://github.com/heartcombo/devise)
-* [WickedPdf](https://github.com/mileszs/wicked_pdf)
-* [Streamio](https://github.com/streamio/streamio-ffmpeg)
+* [Devise-jwt]()
+* [Faker]()
 
 
 ## How to use it :
