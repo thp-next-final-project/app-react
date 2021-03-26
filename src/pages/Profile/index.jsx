@@ -17,7 +17,7 @@ const Profile = () => {
 	return(
 		<div className="profile-container">
 			<ProfileMenu/>
-		<div>
+		<>
 			<Switch>			
 				
 				<Route path="/" component={ProfileInformations} exact></Route>
@@ -41,7 +41,7 @@ const Profile = () => {
 				
 			</Switch>
 			
-		</div>
+		</>
 		</div>
 	)
 }

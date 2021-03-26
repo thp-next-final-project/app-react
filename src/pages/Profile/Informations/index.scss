@@ -1,0 +1,33 @@
+.update-informations-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.update-informations-container{
+    @include glass (0.2);
+    padding: 10px;
+    width: 60%;
+
+}
+
+.form-container{
+    width: 100%;
+        max-width: 100%;
+        height: 7vh;
+        display: flex;
+        align-items: center;
+        margin: 2em 0;
+
+        .half{
+            width: 40%;
+            margin: 0 auto;
+        }
+        .full{
+            width: 90%;
+            margin: 0 auto;
+        }
+    
+}

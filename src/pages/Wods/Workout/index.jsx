@@ -1,10 +1,10 @@
-import {useFetch} from '../../hooks/useFetch'
+import {useFetch} from '../../../hooks/useFetch'
 import {useEffect, useState} from 'react';
 import Working from './Working';
 import Work from './Work';
 
-const Workout = (props) => {
-    const { errors, responseData, isLoading, token, post} = useFetch(true);
+const Workout = () => {
+    const { responseData, post} = useFetch(true);
     const [started, getStarted] = useState(false);
     const [apiResponse, handleApiResponse] = useState();
 
@@ -22,8 +22,6 @@ const Workout = (props) => {
         handleApiResponse(!apiResponse);
     }
 
-
-
     return (
         
         (apiResponse
@@ -37,7 +35,7 @@ const Workout = (props) => {
         
         ))||
         <>
-            chargement...
+            Chargement...
         </>
     )
 }

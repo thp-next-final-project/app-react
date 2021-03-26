@@ -73,7 +73,6 @@ export const useFetch = ( withAuth = false ) => {
       })
         .then((response) => (response.json()))
 				.then((data) => {
-          console.log(data)
           if (data.errors){
             setError(data.errors[0].detail)
           } else {

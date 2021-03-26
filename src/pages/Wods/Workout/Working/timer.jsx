@@ -2,24 +2,24 @@ import React from "react";
 import { useEffect } from "react";
 
 
-const TimeCount = (props) => {
+const TimeCount = ({play, time, setTime}) => {
     
 
     useEffect(() => {
-
         let interval = null;
-        if (props.play) {
+        if (play) {
         interval = setInterval(() => {
-            props.setTime(props.time + 1);
+            setTime(time + 1);
         }, 1000);
-        } else if (!props.play) {
+        } else if (!play) {
         clearInterval(interval);
         }
         return () => clearInterval(interval);
-    }, [props.play, props.time]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [play, time]);
 
     return (
-        <span>{props.time}</span>
+        <span>{time}</span>
     )
 };
 
