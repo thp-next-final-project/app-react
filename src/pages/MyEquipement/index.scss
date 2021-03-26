@@ -1,0 +1,33 @@
+$grid: 8px;
+div.dnd-equipements {
+  width: 70vw;
+  display: flex;
+  justify-content: space-between;
+  div.equipements-list {
+    transition: none !important;
+    background: $secondary-color;
+    padding: $grid;
+    width: 30vw;
+    &.on-drag {
+      transition: none !important;
+      background: lightblue;
+    }
+    div.equipement-item-container {
+      transition: none !important;
+      user-select: none;
+      padding: $grid * 2;
+      margin: 0 0 $grid 0;
+      background: $primary-background;
+      &:hover {
+        background: lightcoral;
+      }
+      &:active {
+        background: lightcoral;
+      }
+      div.equipement-item {
+          display: "flex";
+          justify-content: "space-around";
+      }
+    }
+  }
+}

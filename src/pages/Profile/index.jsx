@@ -1,21 +1,48 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import ProfileMenu from '../../components/ProfileMenu/index';
+import ProfileInformations from './Informations';
+import Wods from '../Wods';
+import Mod from '../Mod';
+import NoMatch from '../../pages/NoMatch';
+import WodsProgress from '../WodsProgress/'
+
+import { 
+	Switch,
+	Route } from "react-router-dom";
+import MyEquipement from '../MyEquipement';
+
 
 const Profile = () => {
-	const user = useSelector((state) => state);
-	const history = useHistory();
-	useEffect(() => {
-		if (!user.isLogged ) {
-			history.push('/');  
-		} 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
+
 
 	return(
+		<div className="profile-container">
+			<ProfileMenu/>
 		<>
-			<p>Mon Profile</p>
+			<Switch>			
+				
+				<Route path="/" component={ProfileInformations} exact></Route>
+
+				<Route path="/meals-of-the-day" component={Mod} ></Route>
+
+				<Route path="/wods" component={Wods} ></Route>
+
+				<Route path="/parameters" component={ProfileInformations} ></Route>
+
+				<Route path="/progress">
+					<WodsProgress/>
+				</Route>
+
+				
+        <Route path="/my-equipement" component={MyEquipement}/>
+          
+				<Route>
+					<NoMatch />
+				</Route> 			
+				
+			</Switch>
+			
 		</>
+		</div>
 	)
 }
 

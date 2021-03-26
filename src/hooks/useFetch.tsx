@@ -4,9 +4,9 @@ import { API_URL, COOKIE_TOKEN } from '../config/config';
 
 export const useFetch = ( withAuth = false ) => {
   const [ isLoading, setIsLoading ] = useState(false);
-  const [ data, setData ] = useState(null);
+  const [ responseData, setResponseData ] = useState(null);
   const [ token, setToken ] = useState(Cookies.get(COOKIE_TOKEN));
-  const [ errors, setErrors] = useState(null);
+  const [ error, setError] = useState(null);
 
   const headers:Record<string, string> = { 
     'Content-Type': 'application/json',
@@ -16,23 +16,27 @@ export const useFetch = ( withAuth = false ) => {
   }
   const get = (path:string) => {
     setIsLoading(true);
-    setErrors(null);
+    setError(null);
     fetch( API_URL + path,
       {
         method: 'get',
         headers,
       })
 				.then((response) => response.json())
-				.then ((response) => {
-					setData(response)
+				.then ((data) => {
+          if (data.errors){
+            setError(data.errors[0].detail)
+          } else {
+            setResponseData(data)
+          } 
 				})
-        .catch(error => setErrors(error))
-        .finally(() => setIsLoading(false))
+        .catch(errors => setError(errors))
+        .finally(() => {setIsLoading(false)})
   };
 
   const post = (path:string, postData:Object) => {
     setIsLoading(true);
-    setErrors(null);
+    setError(null);
     fetch( API_URL + path,
       {
         method: 'post',
@@ -45,19 +49,61 @@ export const useFetch = ( withAuth = false ) => {
           } 
           return response.json()
         })
-				.then((response) => {          
-					setData(response.data)
+				.then((data) => {  
+          if (data.errors) {
+            setError(data.errors[0].detail)
+          } else if (data.error) {
+            setError(data.error)
+          } else {
+            setResponseData(data)
+          }
 				})
-        .catch(error => setErrors(error))
+        .catch(errors => setError(errors))
         .finally(() => setIsLoading(false))
   };
   
+  const patch = (path:string, postData:Object) => {
+    setIsLoading(true);
+    setError(null);
+    fetch( API_URL + path,
+      {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify(postData)
+      })
+        .then((response) => (response.json()))
+				.then((data) => {
+          if (data.errors){
+            setError(data.errors[0].detail)
+          } else {
+            setResponseData(data)
+          }      
+				})
+        .catch(errors => setError(errors))
+        .finally(() => setIsLoading(false))
+  };
+  
+  const destroy = (path:string) => {
+    setIsLoading(true);
+    setError(null);
+    fetch( API_URL + path,
+      {
+        method: 'DELETE',
+        headers,
+      })
+    .then((response) => response.json())
+    .catch(errors => setError(errors))
+    .finally(() => {setIsLoading(false)})
+  };
   return {
     isLoading,
-    errors,
-    data,
+    error,
+    responseData,
     token,
+    headers,
     get,
-    post
+    post,
+    patch,
+    destroy
   };
 }

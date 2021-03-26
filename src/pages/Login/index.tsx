@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
-import {Field} from '../../components/fields/index';
-import MessageError from '../../components/MessageError';
+import {Field} from '../../components/Fields';
+import { REGEX } from '../../config/config';
+// import classnames from 'classnames';
+import Alerts from '../../components/Alerts';
 
 
 const Login = () => {
@@ -14,12 +16,12 @@ const Login = () => {
 	
 	useEffect(() => {
 		if (user.isLogged) {
-			history.push(`/profile`);
+			history.push(`/`);
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user])
 
-	const { errors, data, token, post } = useFetch();
+	const { error, responseData, token, post } = useFetch();
 	
 	const handleLogin = (e:any) => {
 		e.preventDefault();
@@ -34,39 +36,47 @@ const Login = () => {
 	}
 
 	useEffect(() => {
-		if (data) {
+		if (responseData && !error) {
+			const { data }:any = responseData
 			dispatch({ type: LOGIN, data, token });
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [data]);
+	}, [responseData]);
 	const [email, setEmail] = useState("");
-	const [emailError, setEmailError] = useState("");
+	const [emailError, setEmailError] = useState(true);
 	const emailUpdate = (e:any) => {
 		setEmail(e.target.value);
-		const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		if(!e.target.value.match(regex)){
-			setEmailError("Veuillez renseigner un e-mail valide.");
-		} else {
-			setEmailError("");
-		}
+		setEmailError(!e.target.value.match(REGEX));
 	}
+
+	// const btnClassNames = classnames("btn", {
+	// 	"btn-error" : emailError
+	// });
+
 	return(
 		<section className="signup-form ">
-			<h2>Login</h2>
-			<form onSubmit={handleLogin}>
-				<div className="form-container">
-					<div className="half">
-						<Field label="Email" name="email" value={email} change={emailUpdate} error={emailError}/>
+			<div className="signup-container">
+				<h2>Connexion</h2>
+				<form onSubmit={handleLogin}>
+					<div className="form-container">
+						<div className="half">
+							<Field label="Email" name="email" value={email} change={emailUpdate} error={emailError}/>
+						</div>
 					</div>
-				</div>
-				<div className="form-container">
-					<div className="half">
-						<Field label="Password" password name="password"/>
-					</div>
+					<div className="form-container">
+						<div className="half">
+							<Field label="Password" password name="password"/>
+						</div>
 
-				</div>
-			</form>
-			{errors && <MessageError message={errors}/>}
+					</div>
+					<div className="btn-container">
+							<button type="submit" className={`btn ${
+								emailError? "btn-error" : "" }`}>Se connecter</button>
+					</div>
+					
+				</form>
+				{error && <Alerts type={"error"} message={error}/>}
+			</div>
 		</section>
 	)
 }
