@@ -1,5 +1,7 @@
 ![logotype a happy-07](https://d29md5j3ph8xfz.cloudfront.net/100_percent/upload/Content/82047/THP_logoblock_grey.png)
-<a align="center" href="https://thp-next-final-project.github.io/app-react/"><img src="https://github.com/thp-next-final-project/app-react/blob/main/src/assets/logo.png?raw=true" alt="sporteat"/></a>
+<p align="center" >
+<a href="https://thp-next-final-project.github.io/app-react/"><img src="https://github.com/thp-next-final-project/app-react/blob/main/src/assets/logo.png?raw=true" alt="sporteat"/></a>
+ </p>
 
 # Welcome on our final group project with THE HACKING PROJECT NEXT
 
