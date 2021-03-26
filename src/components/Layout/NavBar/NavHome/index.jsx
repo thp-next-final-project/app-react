@@ -37,9 +37,6 @@ const MenuHome = () => {
             </Link>
             
             <div className="nav-right">
-                <Link className="navItems" to="/about">
-                    A propos
-                </Link>
                 <Link className="navItems" to="/signup">
                     Nous rejoindre
                 </Link>                
