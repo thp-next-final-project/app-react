@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/app-react/static/css/main.d876bfac.chunk.css",
+    "main.js": "/app-react/static/js/main.a3965997.chunk.js",
+    "main.js.map": "/app-react/static/js/main.a3965997.chunk.js.map",
+    "runtime-main.js": "/app-react/static/js/runtime-main.613a3e03.js",
+    "runtime-main.js.map": "/app-react/static/js/runtime-main.613a3e03.js.map",
+    "static/js/2.5192dd5e.chunk.js": "/app-react/static/js/2.5192dd5e.chunk.js",
+    "static/js/2.5192dd5e.chunk.js.map": "/app-react/static/js/2.5192dd5e.chunk.js.map",
+    "index.html": "/app-react/index.html",
+    "static/css/main.d876bfac.chunk.css.map": "/app-react/static/css/main.d876bfac.chunk.css.map",
+    "static/js/2.5192dd5e.chunk.js.LICENSE.txt": "/app-react/static/js/2.5192dd5e.chunk.js.LICENSE.txt",
+    "static/media/favorite.01556984.png": "/app-react/static/media/favorite.01556984.png",
+    "static/media/followup.25da3792.png": "/app-react/static/media/followup.25da3792.png",
+    "static/media/informations.fe3eb624.png": "/app-react/static/media/informations.fe3eb624.png",
+    "static/media/logo.c7edf109.png": "/app-react/static/media/logo.c7edf109.png",
+    "static/media/menu.ab24bd15.png": "/app-react/static/media/menu.ab24bd15.png",
+    "static/media/menu2.5ddc0c50.png": "/app-react/static/media/menu2.5ddc0c50.png",
+    "static/media/profile-picture.6246c07a.png": "/app-react/static/media/profile-picture.6246c07a.png",
+    "static/media/sport.9f8e81a9.png": "/app-react/static/media/sport.9f8e81a9.png",
+    "static/media/workout.cba12738.png": "/app-react/static/media/workout.cba12738.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.613a3e03.js",
+    "static/js/2.5192dd5e.chunk.js",
+    "static/css/main.d876bfac.chunk.css",
+    "static/js/main.a3965997.chunk.js"
+  ]
+}
