@@ -10,7 +10,6 @@ const Wod = () => {
     if(!Mod){
         get("/mods")
     }
-    console.log("Mod", Mod);
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [Mod])
   return (

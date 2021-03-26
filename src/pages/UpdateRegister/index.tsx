@@ -9,7 +9,6 @@ import Alerts from '../../components/Alerts';
 const UpdateRegister = () => {
 	const dispatch = useDispatch();
 	const user:any = useSelector((state) => state);
-	console.log(user)
 	const [email, setEmail] = useState();
 	const [firstname, setFirstname] = useState();
 	const [lastname, setLastname] = useState();
@@ -28,7 +27,6 @@ const UpdateRegister = () => {
 
 	const handleSubmit = (e:any) => {
 		e.preventDefault();	
-		console.log(e.target)
 		const updateUser = {
 			user: {
 				firstname: e.target.firstname.value,
@@ -53,10 +51,6 @@ const UpdateRegister = () => {
 	const [emailError, setEmailError] = useState("");
 
 	const handleOnChange = (e:any) => {
-		console.log(email)
-		console.log(e.target.value)
-		
-
 		switch (e.target.name) {
 			case "firstname" : 
 				setFirstname(e.target.value);

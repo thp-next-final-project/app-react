@@ -37,7 +37,6 @@ const Register = () => {
 	}
 	
 	useEffect(() => {
-		console.log("les erreurs", error)
 		if (responseData && !error) {
 			const { data }:any = responseData;
 			dispatch({ type: LOGIN, data, token});

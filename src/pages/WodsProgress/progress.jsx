@@ -1,6 +1,6 @@
 import {XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, VerticalBarSeries} from 'react-vis';
 import {useEffect, useState} from "react"
-import {useFetch} from "../../hooks/useFetch";
+
 const Progress = (props) => {
     const [lineGraph, updateLineGraph] = useState([]);
     const [barGraph, updateBarGraph] = useState([]);

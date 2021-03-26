@@ -34,7 +34,7 @@ const  MyEquipement = () => {
 
   const {get, responseData:dataUserEquipement, error:errorUser} = useFetch(true);
   const {get:getall, responseData:dataAllEquipement, error:errorAll} = useFetch(true);
-  const { patch, destroy, error:errorUpdate} = useFetch(true);
+  const { patch, destroy} = useFetch(true);
 
   useEffect(() => {
     get('/my_equipements') 
@@ -44,7 +44,6 @@ const  MyEquipement = () => {
 
   useEffect(()=> {
     if (dataUserEquipement && !errorUser) {
-      console.log(dataUserEquipement, errorUser)
       setMyEquipement({type: "fill", value: dataUserEquipement});
     }
   }, [dataUserEquipement, errorUser])

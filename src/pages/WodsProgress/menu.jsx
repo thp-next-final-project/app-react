@@ -1,8 +1,8 @@
 const Menu = (props) => (
     <div className="menu">
         {
-            props.exos?.map((exo) => (
-                <div className="choice" onClick={()=>{props.update(exo.id)}} >
+            props.exos?.map((exo, index) => (
+                <div key={index} className="choice" onClick={()=>{props.update(exo.id)}} >
                     {
                         exo.name
                         

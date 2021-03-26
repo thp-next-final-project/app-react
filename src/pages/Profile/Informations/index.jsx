@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useFetch } from '../../../hooks/useFetch';
-import { UPDATE } from '../../../stores/actions';
+// import { UPDATE } from '../../../stores/actions';
 import {Field} from '../../../components/Fields';
 import Alerts from '../../../components/Alerts'
-import { set } from 'js-cookie';
 import Select from 'react-select';
 
 
@@ -13,10 +11,8 @@ import Select from 'react-select';
 
 const ProfileInformations = () => {
 
-	const dispatch = useDispatch();
-	const history = useHistory();
 	const user = useSelector((state) => state);
-	const { responseData:userdata, get, isLoading:isloadingdata} = useFetch(true);
+	const { responseData:userdata, get} = useFetch(true);
 	const [age, setAge] = useState();
 	const [weight, setWeight] = useState();
 	const [height, setHeight] = useState();
@@ -27,10 +23,10 @@ const ProfileInformations = () => {
 
 	useEffect(() => {
 		get(`/api/users/${user.id}`)
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	useEffect(() => {
-		console.log(userdata)
 		if (!userdata?.data?.attributes)  {
 			return
 		}
@@ -46,13 +42,12 @@ const ProfileInformations = () => {
 		
 	}, [userdata])
 	
-	const { responseData, patch, isLoading} = useFetch(true);
+	const { patch, isLoading} = useFetch(true);
 
 
 
 	const handleSubmit = (e) => {
 		e.preventDefault();	
-		console.log(e.target)
 		const updateUser = {
 			user: {
 				age: e.target.age.value,
@@ -70,10 +65,6 @@ const ProfileInformations = () => {
 
 
 	const handleOnChange = (e) => {
-		console.log(age)
-		console.log(e.target.value)
-		
-
 		switch (e.target.name) {
 			case "age" : 
 				setAge(e.target.value);
@@ -89,7 +80,6 @@ const ProfileInformations = () => {
 				break;
 				
 			case "objectif" : 
-			console.log(e.target.value)
 				setObjectif(e.target.value);
 				break;
 			case "activity" : 

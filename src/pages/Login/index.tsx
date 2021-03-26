@@ -5,7 +5,7 @@ import { useFetch } from '../../hooks/useFetch';
 import { LOGIN } from '../../stores/actions';
 import {Field} from '../../components/Fields';
 import { REGEX } from '../../config/config';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import Alerts from '../../components/Alerts';
 
 
@@ -49,9 +49,9 @@ const Login = () => {
 		setEmailError(!e.target.value.match(REGEX));
 	}
 
-	const btnClassNames = classnames("btn", {
-		"btn-error" : emailError
-	});
+	// const btnClassNames = classnames("btn", {
+	// 	"btn-error" : emailError
+	// });
 
 	return(
 		<section className="signup-form ">
