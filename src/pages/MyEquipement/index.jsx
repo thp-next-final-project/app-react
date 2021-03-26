@@ -9,20 +9,19 @@ const getItemStyle = (draggableStyle) => ({
 
 const reducer = (previousState , payload) => {
   const { type, value } = payload;
-  const result = [...previousState];
+  // const result = [...previousState];
   switch (type) {
     case "add":
-      result.splice(value.index, 0, value.data);
-      return [...result]
+      const result = [...previousState.slice(0, value.index), value.data, ...previousState.slice(value.index)];
+      return result
     case "remove":
       return [...previousState.filter(val => val.id !== value.id)]
     case "fill":
       return [...value]
     case "reorder":
       const [ previousIndex, newIndex ] = value;
-      const [removed] = result.splice(previousIndex, 1);
-      result.splice(newIndex, 0, removed);
-      return [...result]
+      const [removed] = previousState.splice(previousIndex, 1);
+      return [...previousState.splice(newIndex, 0, removed)]
     default:
       return previousState;
   }
@@ -33,8 +32,9 @@ const  MyEquipement = () => {
   const [myEquipement, setMyEquipement] = useReducer(reducer, []);
   const [allEquipement, setAllEquipement] = useReducer(reducer, []);
 
-  const {get, patch, destroy, responseData:dataUserEquipement, error:errorUser, isLoading} = useFetch(true);
+  const {get, responseData:dataUserEquipement, error:errorUser} = useFetch(true);
   const {get:getall, responseData:dataAllEquipement, error:errorAll} = useFetch(true);
+  const { patch, destroy, error:errorUpdate} = useFetch(true);
 
   useEffect(() => {
     get('/my_equipements') 
@@ -44,6 +44,7 @@ const  MyEquipement = () => {
 
   useEffect(()=> {
     if (dataUserEquipement && !errorUser) {
+      console.log(dataUserEquipement, errorUser)
       setMyEquipement({type: "fill", value: dataUserEquipement});
     }
   }, [dataUserEquipement, errorUser])
@@ -76,13 +77,11 @@ const  MyEquipement = () => {
       const data = allEquipement[indexSource];
       setMyEquipement({type: "add", value: {index: indexDestination, data:data} });
       setAllEquipement({type: "remove", value: data });
-      console.log(data.id);
       patch(`/my_equipements/${data.id}`)
     } else if (destinationId === "all-equipement") {
       const data = myEquipement[indexSource];
       setAllEquipement({type: "add", value: {index: indexDestination, data:data} });
       setMyEquipement({type: "remove", value: data });
-      console.log(data.id);
       destroy(`/my_equipements/${data.id}`)
     }
   }
