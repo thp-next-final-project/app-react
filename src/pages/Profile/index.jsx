@@ -3,6 +3,7 @@ import ProfileInformations from './Informations';
 import Wods from '../Wods';
 import Mod from '../Mod';
 import NoMatch from '../../pages/NoMatch';
+import WodsProgress from '../WodsProgress/'
 
 import { 
 	Switch,
@@ -27,11 +28,8 @@ const Profile = () => {
 
 				<Route path="/parameters" component={ProfileInformations} ></Route>
 
-				<Route path="/train" exact>
-					<Wods/>
-				</Route>
-				<Route path="/train/progress/:section?">
-					<Wods/>
+				<Route path="/progress">
+					<WodsProgress/>
 				</Route>
 
 				
